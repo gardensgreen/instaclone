@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User
+from ..models.db import db
 
 user_routes = Blueprint('users', __name__)
 
@@ -17,3 +18,12 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route("/<int:id>/follower", methods=["POST"])
+def addFollower(id):
+    user = User.query.get(id)
+    followerId = request.json["followerId"]
+    follower = User.query.get(followerId)
+    user.followers.append(follower)
+    db.session.commit()
+    return "done"
