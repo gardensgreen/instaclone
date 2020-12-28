@@ -22,7 +22,11 @@ export default function () {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form
+                action="/posts/new"
+                method="post"
+                encType="multipart/form-data"
+            >
                 <div>
                     <label>Post Description</label>
                     <input
@@ -39,7 +43,7 @@ export default function () {
                         ref={uploadInput}
                         style={{ display: "none" }}
                         type="file"
-                        name="image"
+                        name="file"
                         onChange={updateFile}
                         required
                     />
