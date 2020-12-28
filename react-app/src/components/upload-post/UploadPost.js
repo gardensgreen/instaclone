@@ -23,7 +23,7 @@ export default function () {
     return (
         <div>
             <form
-                action="/posts/new"
+                action="/api/posts/"
                 method="post"
                 encType="multipart/form-data"
             >
