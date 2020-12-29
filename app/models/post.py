@@ -9,6 +9,8 @@ class Post(db.Model):
     photoUrl = db.Column(db.String(100), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    comments = db.relationship('Comment', back_populates="post")
+
     def to_dict(self):
         return {
             "id": self.id,

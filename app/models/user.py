@@ -9,19 +9,20 @@ follow = db.Table(
     db.Column("followingId", db.Integer, db.ForeignKey("users.id"))
 )
 
+
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
-  id = db.Column(db.Integer, primary_key = True)
-  username = db.Column(db.String(40), nullable = False, unique = True)
-  email = db.Column(db.String(255), unique = True)
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(40), nullable=False, unique=True)
+  email = db.Column(db.String(255), unique=True)
   avatarUrl = db.Column(db.String(255))
   bio = db.Column(db.String(255))
-  hashed_password = db.Column(db.String(255), nullable = False)
+  hashed_password = db.Column(db.String(255), nullable=False)
 
   followers = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followingId, secondaryjoin=id==follow.c.followerId)
   following = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followerId, secondaryjoin=id==follow.c.followingId)
-  posts = relationship("Post")
+  posts = db.relationship("Post")
 
   @property
   def password(self):
