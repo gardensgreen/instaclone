@@ -16,10 +16,8 @@ BUCKET_NAME = 'insta-group-project'
 
 
 @post_routes.route('/', methods=["POST"])
-def upload_post():
+def create_post():
     img = request.files['file']
-    # print(dir(request["form"]))
-    print((request.form.get('description')))
     if img:
         filename = secure_filename(img.filename)
         img.save(filename)
@@ -36,3 +34,13 @@ def upload_post():
         db.session.add(post)
         db.session.commit()
         return jsonify(post.to_dict())
+
+
+@post_routes.route('/<int:id>', methods=['PUT'])
+def edit_post(id):
+    post = Post.query.get(id)
+    description = request.json['description']
+    post.description = description
+    db.session.add(post)
+    db.session.commit()
+    return jsonify(post.to_dict())
