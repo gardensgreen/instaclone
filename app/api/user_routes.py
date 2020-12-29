@@ -29,4 +29,4 @@ def addFollower(id):
     follower = User.query.get(followerId)
     user.followers.append(follower)
     db.session.commit()
-    return jasonify({"added": True})
+    return jsonify({"added": True})
