@@ -30,9 +30,9 @@ def upload_post():
             ExtraArgs={'ACL': 'public-read'}
         )
         os.remove(filename)
-    post = Post(description=request.form.get('description'),
-                photoUrl=f"https://s3.amazonaws.com/insta-group-project/{filename}",
-                userId=current_user.get_id())
-    db.session.add(post)
-    db.session.commit()
-    return jsonify(post.to_dict())
+        post = Post(description=request.form.get('description'),
+                    photoUrl=f"https://s3.amazonaws.com/insta-group-project/{filename}",
+                    userId=current_user.get_id())
+        db.session.add(post)
+        db.session.commit()
+        return jsonify(post.to_dict())
