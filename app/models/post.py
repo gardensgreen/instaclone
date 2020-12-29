@@ -16,5 +16,6 @@ class Post(db.Model):
             "id": self.id,
             "description": self.description,
             "photoUrl": self.photoUrl,
-            "userId": self.userId
+            "userId": self.userId,
+            "comments": self.comments
         }
