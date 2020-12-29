@@ -56,7 +56,7 @@ def read_posts():
 
 # Update Post
 @post_routes.route('/<int:id>', methods=['PUT'])
-@login.required
+@login_required
 def edit_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
@@ -69,7 +69,7 @@ def edit_post(id):
 
 # Delete Post
 @post_routes.route('/<int:id>', methods=['DELETE'])
-@login.required
+@login_required
 def delete_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
