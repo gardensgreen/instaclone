@@ -1,4 +1,5 @@
 from .db import db
+from .like import Like
 from sqlalchemy.orm import relationship
 
 
@@ -10,6 +11,8 @@ class Post(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     comments = relationship('Comment')
+    likingUsers = relationship("User", secondary=Like, back_populates="likedPosts")
+    # primaryjoin=id==Like.c.postId, secondaryjoin=id==Like.c.userId
 
     def to_dict(self):
         return {
