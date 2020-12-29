@@ -1,6 +1,7 @@
 import boto3
 import os
 from ..models.post import Post
+from ..models.user import User
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
@@ -43,6 +44,14 @@ def read_post(id):
     post = Post.query.get(id)
     return jsonify(post.to_dict())
 
+# Read Posts (Post Feed)
+@post_routes.route('/', methods=['GET'])
+def read_posts():
+    user = User.query.get(current_user.get_id())
+    following_ids = [following.id for following in user.following]
+    posts = Post.query.filter(Post.userId.in_(following_ids)).all()
+    return jsonify({"Posts": [post.to_dict() for post in posts]})
+
 
 # Update Post
 @post_routes.route('/<int:id>', methods=['PUT'])
@@ -55,7 +64,6 @@ def edit_post(id):
     db.session.add(post)
     db.session.commit()
     return jsonify(post.to_dict())
-
 
 # Delete Post
 @post_routes.route('/<int:id>', methods=['DELETE'])
