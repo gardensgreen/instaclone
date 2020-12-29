@@ -5,9 +5,25 @@ export default function () {
     const [image, setImage] = useState(null);
     const uploadInput = useRef(null);
 
-    // const handleSubmit = async (e) => {
-    //     //Handle form submit
-    // };
+    const handleSubmit = async (e) => {
+        //Handle form submit
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("description", description);
+
+        try {
+            let res = await fetch(`/api/posts/`, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!res.ok) throw res;
+            return "worked";
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     const updateFile = (e) => {
         e.preventDefault();
@@ -22,11 +38,7 @@ export default function () {
 
     return (
         <div>
-            <form
-                action="/api/posts/"
-                method="post"
-                encType="multipart/form-data"
-            >
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label>Post Description</label>
                     <input
