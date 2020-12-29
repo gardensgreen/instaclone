@@ -16,28 +16,45 @@ s3 = boto3.client('s3',
 BUCKET_NAME = 'insta-group-project'
 
 
+# AWS s3 Helper
+def upload_file_to_s3(file, userId, bucket_name, acl="public-read"):
+    s3.upload_fileobj(
+        file,
+        bucket_name,
+        file.filename,
+        ExtraArgs={
+            "ACL": acl,
+            "ContentType": file.content_type
+        }
+    )
+
+    return "{}{}".format('https://insta-group-project.s3.amazonaws.com/', file.filename)
 
 # Create Post
 @post_routes.route('/', methods=["POST"])
 @login_required
 def create_post():
-    img = request.files['file']
-    if img:
-        filename = secure_filename(img.filename)
-        img.save(filename)
-        response = s3.upload_file(
-            Bucket=BUCKET_NAME,
-            Filename=filename,
-            Key=filename,
-            ExtraArgs={'ACL': 'public-read'}
-        )
-        os.remove(filename)
-        post = Post(description=request.form.get('description'),
-                    photoUrl=f"https://s3.amazonaws.com/insta-group-project/{filename}",
+    if "file" not in request.files:
+        return "No file key in request.files"
+
+    file = request.files['file']
+    description = request.form.get('description')
+
+    if file:
+        photo_url =  upload_file_to_s3(file, current_user.get_id(), BUCKET_NAME)
+        try:
+            post = Post(description=description,
+                    photoUrl=photo_url,
                     userId=current_user.get_id())
-        db.session.add(post)
-        db.session.commit()
-        return jsonify(post.to_dict())
+
+            db.session.add(post)
+            db.session.commit()
+            return jsonify(post.to_dict())
+        except AssertionError as message:
+            return jsonify({"error": str(message)}), 400
+    else:
+        print("Something went wrong")
+
 
 # Read Post
 @post_routes.route('/<int:id>', methods=['GET'])
