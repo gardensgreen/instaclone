@@ -9,10 +9,13 @@ class Post(db.Model):
     photoUrl = db.Column(db.String(100), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    comments = relationship('Comment')
+
     def to_dict(self):
         return {
             "id": self.id,
             "description": self.description,
             "photoUrl": self.photoUrl,
-            "userId": self.userId
+            "userId": self.userId,
+            "comments": self.comments
         }
