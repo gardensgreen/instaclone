@@ -5,9 +5,9 @@ export default function () {
     const [image, setImage] = useState(null);
     const uploadInput = useRef(null);
 
-    const handleSubmit = async (e) => {
-        //Handle form submit
-    };
+    // const handleSubmit = async (e) => {
+    //     //Handle form submit
+    // };
 
     const updateFile = (e) => {
         e.preventDefault();
@@ -32,6 +32,7 @@ export default function () {
                     <input
                         type="text"
                         value={description}
+                        name="description"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
