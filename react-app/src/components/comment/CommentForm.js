@@ -6,6 +6,7 @@ export default function CommentForm(postId) {
 
 	const postComment = e => {
 		e.preventDefault();
+		return <h1>This comment {e.value}submitted</h1>;
 	};
 
 	return (
@@ -17,10 +18,15 @@ export default function CommentForm(postId) {
 						type='text'
 						value={comment}
 						name='comment'
-						onChange={e => setComment(e.target.value)}
-						onSubmit={postComment}
+						onChange={e => {
+							setComment(e.target.value);
+							console.log(comment);
+						}}
 					/>
-					<input style={{ display: 'none' }} value={postId} name='postId' />
+					{/* <input style={{ display: 'none' }} value={postId} name='postId' /> */}
+				</div>
+				<div>
+					<input type='submit' value='Submit' onSubmit={postComment} />
 				</div>
 				{/* <button type='submit'>Comment</button> */}
 			</form>
