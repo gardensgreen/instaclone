@@ -15,6 +15,8 @@ s3 = boto3.client('s3',
 BUCKET_NAME = 'insta-group-project'
 
 
+
+# Create Post
 @post_routes.route('/', methods=["POST"])
 def create_post():
     img = request.files['file']
@@ -35,12 +37,28 @@ def create_post():
         db.session.commit()
         return jsonify(post.to_dict())
 
+# Read Post
+@post_routes.route('/<int:id>', methods=['GET'])
+def read_post(id):
+    post = Post.query.get(id)
+    return jsonify(post.to_dict())
 
+
+# Update Post
 @post_routes.route('/<int:id>', methods=['PUT'])
 def edit_post(id):
     post = Post.query.get(id)
     description = request.json['description']
     post.description = description
     db.session.add(post)
+    db.session.commit()
+    return jsonify(post.to_dict())
+
+
+# Delete Post
+@post_routes.route('/<int:id>', methods=['DELETE'])
+def delete_post(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
     db.session.commit()
     return jsonify(post.to_dict())
