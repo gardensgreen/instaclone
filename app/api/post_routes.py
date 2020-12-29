@@ -2,6 +2,7 @@ import boto3
 import os
 from ..models.post import Post
 from ..models.user import User
+from ..models.comment import Comment
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
@@ -94,3 +95,29 @@ def delete_post(id):
     db.session.delete(post)
     db.session.commit()
     return jsonify(post.to_dict())
+
+@post_routes.route('/<int:id>/comments', methods=["POST"])
+# @login_required
+def comment(id):
+    comment = Comment(userId=2, comment=request.json["comment"], postId=id)
+    db.session.add(comment)
+    post = Post.query.get(id)
+    post.comments.append(comment)
+    db.session.commit()
+    return jsonify(post.to_dict())
+
+@post_routes.route('/<int:postId>/comments/<int:commentId>', methods=["DELETE"])
+def deleteComment(postId, commentId):
+    comment = Comment.query.get(commentId)
+    post = Post.query.get(postId)
+    post.comments.remove(comment)
+    db.session.commit()
+    return jsonify(post.to_dict())
+
+@post_routes.route('/<int:postId>/comments/<int:commentId>', methods=["PATCH"])
+def editComment(postId, commentId):
+    comment = Comment.query.get(commentId)
+    comment.comment = request.json["comment"]
+    db.session.commit()
+    return jsonify(comment.to_dict())
+

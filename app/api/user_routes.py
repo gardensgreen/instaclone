@@ -19,9 +19,13 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+
 @user_routes.route("/<int:id>/follower", methods=["POST"])
 @login_required
 def addFollower(id):
+    # Create a Follow Relationship
+    # POST /api/users/(id of person to follow)/follower
+    # BODY JSON {followerId: (id of follower to ADD)}
     user = User.query.get(id)
     followerId = request.json["followerId"]
     if current_user.get_id() != followerId:
@@ -30,3 +34,19 @@ def addFollower(id):
     user.followers.append(follower)
     db.session.commit()
     return jsonify({"added": True})
+
+@user_routes.route("/<int:id>/follower", methods=["DELETE"])
+@login_required
+def deleteFollower(id):
+    # Delete a Follow Relationship
+    # DELETE /api/users/(id of person to follow)/follower
+    # BODY JSON {followerId: (id of follower to REMOVE)}
+    followerId = request.json["followerId"]
+    if current_user.get_id() != followerId and current_user.get_id() != id:
+        return jsonify({"error": "Not authorized"})
+    follower = User.query.get(followerId)
+    user = User.query.get(id)
+    user.followers.remove(follower)
+    db.session.commit()
+    return jsonify({"removed": True})
+
