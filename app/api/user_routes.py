@@ -20,12 +20,12 @@ def user(id):
     return user.to_dict()
 
 @user_routes.route("/<int:id>/follower", methods=["POST"])
-# @login_required
+@login_required
 def addFollower(id):
     user = User.query.get(id)
     followerId = request.json["followerId"]
-    # if current_user.get_id() != followerId:
-    #     return jsonify({"error": "Not authorized"})
+    if current_user.get_id() != followerId:
+        return jsonify({"error": "Not authorized"})
     follower = User.query.get(followerId)
     user.followers.append(follower)
     db.session.commit()

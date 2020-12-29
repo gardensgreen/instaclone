@@ -19,6 +19,7 @@ BUCKET_NAME = 'insta-group-project'
 
 # Create Post
 @post_routes.route('/', methods=["POST"])
+@login_required
 def create_post():
     img = request.files['file']
     if img:
@@ -55,6 +56,7 @@ def read_posts():
 
 # Update Post
 @post_routes.route('/<int:id>', methods=['PUT'])
+@login.required
 def edit_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
@@ -67,6 +69,7 @@ def edit_post(id):
 
 # Delete Post
 @post_routes.route('/<int:id>', methods=['DELETE'])
+@login.required
 def delete_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
