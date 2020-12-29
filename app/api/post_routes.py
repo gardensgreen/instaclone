@@ -48,6 +48,8 @@ def read_post(id):
 @post_routes.route('/<int:id>', methods=['PUT'])
 def edit_post(id):
     post = Post.query.get(id)
+    if current_user.get_id() != post.userId:
+        return jsonify({ "error": 'Not Authorized'})
     description = request.json['description']
     post.description = description
     db.session.add(post)
@@ -59,6 +61,8 @@ def edit_post(id):
 @post_routes.route('/<int:id>', methods=['DELETE'])
 def delete_post(id):
     post = Post.query.get(id)
+    if current_user.get_id() != post.userId:
+        return jsonify({ "error": 'Not Authorized'})
     db.session.delete(post)
     db.session.commit()
     return jsonify(post.to_dict())
