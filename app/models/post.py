@@ -9,7 +9,7 @@ class Post(db.Model):
     photoUrl = db.Column(db.String(100), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    comments = db.relationship('Comment', back_populates="post")
+    comments = relationship('Comment')
 
     def to_dict(self):
         return {
@@ -17,5 +17,5 @@ class Post(db.Model):
             "description": self.description,
             "photoUrl": self.photoUrl,
             "userId": self.userId,
-            "comments": self.comments
+            "comments": [comment.to_dict() for comment in self.comments]
         }
