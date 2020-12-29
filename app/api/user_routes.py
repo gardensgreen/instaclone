@@ -49,3 +49,4 @@ def deleteFollower(id):
     user.followers.remove(follower)
     db.session.commit()
     return jsonify({"removed": True})
+
