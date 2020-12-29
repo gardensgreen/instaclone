@@ -100,7 +100,8 @@ def delete_post(id):
 @post_routes.route('/<int:id>/comments', methods=["POST"])
 # @login_required
 def comment(id):
-    comment = Comment(userId=2, comment=request.json["comment"], postId=id)
+    print(request)
+    comment = Comment(userId=current_user.get_id(), comment=request.json["comment"], postId=id)
     db.session.add(comment)
     post = Post.query.get(id)
     post.comments.append(comment)
@@ -125,4 +126,3 @@ def editComment(postId, commentId):
     comment.comment = request.json["comment"]
     db.session.commit()
     return jsonify(comment.to_dict())
-

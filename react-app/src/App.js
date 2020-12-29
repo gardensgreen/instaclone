@@ -52,7 +52,7 @@ function App() {
 			</ProtectedRoute>
 			<ProtectedRoute path='/posts/:postId' exact={true} authenticated={authenticated}>
 				<h1>Post is here</h1>
-				<CommentForm></CommentForm>
+				<CommentForm postId={1}></CommentForm>
 			</ProtectedRoute>
 		</BrowserRouter>
 	);

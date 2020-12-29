@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 
-export default function CommentForm(postId) {
+export default function CommentForm({ postId }) {
 	const [comment, setComment] = useState('');
 
-	const postComment = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		return <h1>This comment {e.value}submitted</h1>;
+		let body = { comment };
+		console.log(body);
+		let res = await fetch(`/api/posts/${postId}/comments`, {
+			method: 'POST',
+			body: JSON.stringify(body),
+			headers: { 'Content-Type': 'application/json' },
+		});
 	};
 
 	return (
 		<div>
-			<form action='/api/comments/' method='post'>
+			<form onSubmit={handleSubmit}>
 				<div>
 					<label>New Comment</label>
 					<input
@@ -20,15 +25,12 @@ export default function CommentForm(postId) {
 						name='comment'
 						onChange={e => {
 							setComment(e.target.value);
-							console.log(comment);
 						}}
 					/>
-					{/* <input style={{ display: 'none' }} value={postId} name='postId' /> */}
 				</div>
 				<div>
-					<input type='submit' value='Submit' onSubmit={postComment} />
+					<input type='submit' value='Submit' />
 				</div>
-				{/* <button type='submit'>Comment</button> */}
 			</form>
 		</div>
 	);
