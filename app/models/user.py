@@ -20,8 +20,8 @@ class User(db.Model, UserMixin):
   bio = db.Column(db.String(255))
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  followers = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followingId, secondaryjoin=id==follow.c.followerId)
-  following = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followerId, secondaryjoin=id==follow.c.followingId)
+  followers = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followingId, secondaryjoin=id==follow.c.followerId, back_populates="following")
+  following = db.relationship("User", secondary=follow, primaryjoin=id==follow.c.followerId, secondaryjoin=id==follow.c.followingId, back_populates="followers")
   posts = relationship("Post")
 
   @property
