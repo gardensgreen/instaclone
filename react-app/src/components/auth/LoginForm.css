@@ -112,6 +112,10 @@
     transition-timing-function: ease-in-out;
 }
 
+.demo-button:hover {
+    cursor: pointer;
+}
+
 .sign-up-text {
     font-size: 0.8rem;
 }
