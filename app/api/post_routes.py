@@ -78,6 +78,8 @@ def read_posts():
         for comment in post.comments:
             if comment.userId not in users:
                 users[comment.userId] = comment.user.to_simple_dict()
+    if user.id not in users:
+        users[user.id] = user.to_simple_dict()
     return jsonify({"Posts": [post.to_dict() for post in posts], "users":users})
 
 

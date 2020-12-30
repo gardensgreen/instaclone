@@ -32,9 +32,14 @@ body {
     padding: 3px;
 }
 
-.post-comment-holder {
+/* .post-comment-holder {
     max-height: 20vh;
     overflow: hidden;
+} */
+
+.post-comment-field {
+    width: 95%;
+    border: none;
 }
 
 .one-post-holder {

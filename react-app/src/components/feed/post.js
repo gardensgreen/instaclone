@@ -1,6 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Post = ({post, user, users}) => {
+
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState(post.comments)
+
+    const submitComment = async (e) => {
+        e.preventDefault();
+        if(comment.length == 0) return;
+        let res = await fetch(`/api/posts/${post.id}/comments`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({comment})
+        })
+        res = await res.json();
+        setComments(res.comments);
+        setComment("");
+    }
     return (
         <div className="one-post-holder">
             <div className="post-user-info">
@@ -14,8 +30,12 @@ const Post = ({post, user, users}) => {
                 <div className="post-likes">{post.numLikes} likes</div>
                 <div className="post-text"><b>{user.username}</b> {post.description}</div>
                 <div className="post-comment-holder">
-                    {post.comments.map(c => <div className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>)}
+                    {comments.map(c => <div className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>)}
                 </div>
+                <form onSubmit={submitComment}>
+                    <textarea value={comment} onChange={e => setComment(e.target.value)}placeholder="Add a comment" className="post-comment-field"/>
+                    <input value="Comment" type="submit"/>
+                </form>
             </div>
 
         </div>
