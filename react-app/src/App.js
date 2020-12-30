@@ -9,6 +9,7 @@ import User from "./components/User";
 // import UploadUser from "./components/upload-post/UploadPost";
 import { authenticate } from "./services/auth";
 import UploadPost from "./components/upload-post/UploadPost";
+import LandingPage from "./components/landing-page/LandingPage";
 
 function App() {
     const [authenticated, setAuthenticated] = useState(false);
@@ -31,6 +32,12 @@ function App() {
     return (
         <BrowserRouter>
             {/* <NavBar setAuthenticated={setAuthenticated} /> */}
+            <Route path="/landing" exact={true}>
+                <LandingPage
+                    authenticated={authenticated}
+                    setAuthenticated={setAuthenticated}
+                />
+            </Route>
             <Route path="/login" exact={true}>
                 <LoginForm
                     authenticated={authenticated}

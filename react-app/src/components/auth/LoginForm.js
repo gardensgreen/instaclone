@@ -45,6 +45,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     return (
         <>
             <div className="login-form__container">
+                <i class="fab fa-instagram fa-2x"></i>
                 <h1 className="form-title">Log In</h1>
                 <form className="login-form" onSubmit={onLogin}>
                     <div>

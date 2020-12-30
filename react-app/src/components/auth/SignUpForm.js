@@ -52,8 +52,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     return (
         <>
             <div className="login-form__container">
+                <i class="fab fa-instagram fa-2x"></i>
                 <h1 className="form-title">Sign up</h1>
-
                 <form className="login-form" onSubmit={onSignUp}>
                     <div className="input__container">
                         <input
