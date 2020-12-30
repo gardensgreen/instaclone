@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import './PostForm.css';
 
 export default function () {
@@ -20,6 +22,8 @@ export default function () {
 				body: formData,
 			});
 			if (!res.ok) throw res;
+			console.log('works!!');
+			return <Redirect to='/' />;
 		} catch (err) {
 			console.error(err);
 		}
@@ -44,26 +48,33 @@ export default function () {
 	const uploadImage = () => {
 		if (!imagePreview) {
 			return (
-				<div onClick={handleUploadImage}>
+				<>
+					<h1 id='imgUploadTitle'>Upload an Image</h1>
 					<div id='imgPlaceholder'></div>
-					<h1 id='imgUploadPrompt'>Upload an Image</h1>
-				</div>
+					<div onClick={handleUploadImage}>
+						<button id='imgUploadButton'>Upload</button>
+					</div>
+				</>
 			);
 		} else {
 			return (
-				<div onClick={handleUploadImage}>
+				<>
 					<div id='imgContainer'>
 						<img id='postImage' src={imagePreview} />
 					</div>
-					<h1 id='imgUploadPrompt'>Change Image</h1>
-				</div>
+					<div onClick={handleUploadImage}>
+						<button id='imgUploadButton' style={{ width: '120px' }}>
+							Change Image
+						</button>
+					</div>
+				</>
 			);
 		}
 	};
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} id='newPostForm'>
 				<div id='postFormContainer'>
 					{/* users avatar */}
 					{uploadImage()}
@@ -78,7 +89,6 @@ export default function () {
 						/>
 					</div>
 					<div id='imgCaptionContainer'>
-						<label id='captionLabel'>Caption</label>
 						<textarea
 							id='imgCaptionInput'
 							value={description}
