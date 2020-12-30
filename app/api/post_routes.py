@@ -67,10 +67,20 @@ def read_post(id):
 # Read Posts (Post Feed)
 @post_routes.route('/', methods=['GET'])
 def read_posts():
-    user = User.query.get(current_user.get_id())
+    #user = User.query.get(current_user.get_id())
+    user = current_user
     following_ids = [following.id for following in user.following]
     posts = Post.query.filter(Post.userId.in_(following_ids)).all()
-    return jsonify({"Posts": [post.to_dict() for post in posts]})
+    users = {}
+    for post in posts:
+        if post.userId not in users:
+            users[post.userId] = post.user.to_simple_dict()
+        for comment in post.comments:
+            if comment.userId not in users:
+                users[comment.userId] = comment.user.to_simple_dict()
+    if user.id not in users:
+        users[user.id] = user.to_simple_dict()
+    return jsonify({"Posts": [post.to_dict() for post in posts], "users":users})
 
 
 # Update Post
@@ -107,11 +117,11 @@ def likePost(id):
     if user.id not in likingUserIds:
         post.likingUsers.append(user)
         db.session.commit()
-        return jsonify({"addedLike":True})
+        return jsonify(post.to_dict())
     else:
         post.likingUsers.remove(user)
         db.session.commit()
-        return jsonify({"removedLike":True})
+        return jsonify(post.to_dict())
 
 
 @post_routes.route('/<int:id>/comments', methods=["POST"])

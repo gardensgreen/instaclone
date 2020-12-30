@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 
 class Comment(db.Model):
@@ -7,6 +8,9 @@ class Comment(db.Model):
     comment = db.Column(db.String(500))
     postId = db.Column(db.Integer, db.ForeignKey('posts.id'))
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    timestamp = db.Column(db.DateTime, default=datetime.now())
+
+    user = db.relationship("User")
 
     def to_dict(self):
         return {

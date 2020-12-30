@@ -1,6 +1,7 @@
 from .db import db
 from .like import Like
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 
 class Post(db.Model):
@@ -9,6 +10,9 @@ class Post(db.Model):
     description = db.Column(db.String(100), nullable=True)
     photoUrl = db.Column(db.String(100), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    timestamp = db.Column(db.DateTime, default=datetime.now())
+
+    user = relationship("User")
 
     comments = relationship('Comment')
     likingUsers = relationship("User", secondary=Like, back_populates="likedPosts")
@@ -20,5 +24,6 @@ class Post(db.Model):
             "description": self.description,
             "photoUrl": self.photoUrl,
             "userId": self.userId,
-            "comments": [comment.to_dict() for comment in self.comments]
+            "comments": [comment.to_dict() for comment in self.comments],
+            "numLikes": len(self.likingUsers)
         }
