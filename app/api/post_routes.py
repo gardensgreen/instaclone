@@ -43,11 +43,11 @@ def create_post():
     description = request.form.get('description')
 
     if file:
-        photo_url =  upload_file_to_s3(file, current_user.get_id(), BUCKET_NAME)
+        photo_url = upload_file_to_s3(file, current_user.get_id(), BUCKET_NAME)
         try:
             post = Post(description=description,
-                    photoUrl=photo_url,
-                    userId=current_user.get_id())
+                        photoUrl=photo_url,
+                        userId=current_user.get_id())
 
             db.session.add(post)
             db.session.commit()

@@ -1,0 +1,35 @@
+#avatarImage {
+	vertical-align: middle;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: inline;
+	/* border: 2px solid lightgrey; */
+	overflow: hidden;
+}
+
+#imgUploadPrompt {
+	font-size: 20px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-weight: 500;
+	cursor: pointer;
+}
+
+#avatarImageRing {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background-image: linear-gradient(
+		45deg,
+		#ffa95f 5%,
+		#f99c4a 15%,
+		#f47838 30%,
+		#e75157 45%,
+		#d92d7a 70%,
+		#cc2a92 80%,
+		#c32e92 95%
+	);
+}

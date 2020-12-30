@@ -35,6 +35,7 @@ def addFollower(id):
     db.session.commit()
     return jsonify({"added": True})
 
+
 @user_routes.route("/<int:id>/follower", methods=["DELETE"])
 @login_required
 def deleteFollower(id):
@@ -49,4 +50,3 @@ def deleteFollower(id):
     user.followers.remove(follower)
     db.session.commit()
     return jsonify({"removed": True})
-
