@@ -1,118 +1,118 @@
 
 from app.models import db, Post
 from datetime import datetime
-
+import random
 # Adds a demo user, you can add other users here if you want
 
 
 def seed_posts():
     seed_post1 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=3,
                       )
     seed_post2 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=3,
                       )
     seed_post3 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=3,
                       )
     seed_post4 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=4,
                       )
     seed_post5 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=4,
                       )
     seed_post6 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=4,
                       )
     seed_post7 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=5,
                       )
     seed_post8 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=5,
                       )
     seed_post9 = Post(description="dummy description",
-                      photoUrl="https://source.unsplash.com/random",
+                      photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                       userId=5,
                       )
     seed_post10 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=6,
                        )
     seed_post11 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=6,
                        )
     seed_post12 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=6,
                        )
     seed_post13 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=7,
                        )
     seed_post14 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=7,
                        )
     seed_post15 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=7,
                        )
     seed_post16 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=8,
                        )
     seed_post17 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=8,
                        )
     seed_post18 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=8,
                        )
     seed_post19 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=9,
                        )
     seed_post20 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=9,
                        )
     seed_post21 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=9,
                        )
     seed_post22 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=9,
                        )
     seed_post23 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=10,
                        )
     seed_post24 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
                        userId=10,
                        )
     seed_post25 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
-                       userId=11,
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
+                       userId=2,
                        )
     seed_post26 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
-                       userId=11,
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
+                       userId=2,
                        )
     seed_post27 = Post(description="dummy description",
-                       photoUrl="https://source.unsplash.com/random",
-                       userId=11,
+                       photoUrl=f"https://source.unsplash.com/random?sig={random.randint(0, 10000)}",
+                       userId=2,
                        )
 
     db.session.add(seed_post1)

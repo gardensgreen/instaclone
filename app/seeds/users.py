@@ -27,7 +27,7 @@ def seed_users():
     seed_user9 = User(username='Chris', email='chris@aa.io',
                       password='password', avatarUrl='https://uifaces.co/our-content/donated/noplz47r59v1uxvyg8ku.png', bio="dummy bio")
 
-    # db.session.add(demo)
+    db.session.add(demo)
     db.session.add(seed_user1)
     db.session.add(seed_user2)
     db.session.add(seed_user3)
