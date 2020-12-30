@@ -3,6 +3,7 @@ import os
 from ..models.post import Post
 from ..models.user import User
 from ..models.comment import Comment
+from ..models.user import User
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
@@ -97,10 +98,25 @@ def delete_post(id):
     return jsonify(post.to_dict())
 
 
+@post_routes.route('/<int:id>/likes', methods=["POST"])
+@login_required
+def likePost(id):
+    post = Post.query.get(id)
+    user = User.query.get(current_user.get_id())
+    likingUserIds = {u.id:True for u in post.likingUsers }
+    if user.id not in likingUserIds:
+        post.likingUsers.append(user)
+        db.session.commit()
+        return jsonify({"addedLike":True})
+    else:
+        post.likingUsers.remove(user)
+        db.session.commit()
+        return jsonify({"removedLike":True})
+
+
 @post_routes.route('/<int:id>/comments', methods=["POST"])
-# @login_required
+@login_required
 def comment(id):
-    print(request)
     comment = Comment(userId=current_user.get_id(), comment=request.json["comment"], postId=id)
     db.session.add(comment)
     post = Post.query.get(id)
