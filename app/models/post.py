@@ -25,5 +25,6 @@ class Post(db.Model):
             "photoUrl": self.photoUrl,
             "userId": self.userId,
             "comments": [comment.to_dict() for comment in self.comments],
-            "numLikes": len(self.likingUsers)
+            "numLikes": len(self.likingUsers),
+            "likers" : [l.id for l in self.likingUsers]
         }

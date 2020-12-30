@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 
-const Post = ({post, user, users}) => {
+const Post = ({post, user, users, myUserId}) => {
 
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(post.comments);
     const [numLikes, setNumLikes] = useState(post.numLikes);
+    const [likeUsers, setLikeUsers] = useState(post.likers)
 
     const submitComment = async (e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ const Post = ({post, user, users}) => {
         })
         res = await res.json();
         setNumLikes(res.numLikes);
+        setLikeUsers(res.likers);
 
     }
     return (
@@ -37,7 +39,7 @@ const Post = ({post, user, users}) => {
                 <img src={post.photoUrl} />
             </div>
             <div className="post-bottom-info-holder">
-                <div className="post-likes">{numLikes} likes <i onClick={like} class="far fa-heart"></i>
+                <div className="post-likes">{numLikes} likes <i onClick={like} className={likeUsers.includes(myUserId) ? "fas fa-heart":"far fa-heart"}></i>
                 </div>
                 <div className="post-text"><b>{user.username}</b> {post.description}</div>
                 <div className="post-comment-holder">
