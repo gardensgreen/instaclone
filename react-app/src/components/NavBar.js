@@ -3,6 +3,17 @@ import React from 'react';
 // import LogoutButton from './auth/LogoutButton';
 
 const NavBar = ({ setAuthenticated }) => {
+  const clickedSearch = () => {
+    const searchIcons = window.document.getElementById("searchIcons");
+    searchIcons.style.display = "none";
+    const searchIconsActive = window.document.getElementById("searchIcons--active");
+    searchIconsActive.style.display = "flex"
+    const searchIconsText = window.document.getElementById("searchIcons--searchText");
+    searchIconsText.style.display = "none"
+    const searchIconsInput = window.document.getElementById("searchIcons__input");
+    searchIconsInput.focus();
+  }
+
   return (
     <nav className="nav">
       <div className="nav__div1">
@@ -11,10 +22,30 @@ const NavBar = ({ setAuthenticated }) => {
             <span style={{ marginTop: "-6px", fontFamily: "BillabongW00-Regular", fontSize: "40px", height: "54px" }}>Instagram</span>
           </div>
           <div className="nav__div2__center">
-            <div style={{ width: "30px", height: "30px" }}>
+            <input className="div2__center__searchbar" type="text" autocapitalize="none" placeholder="Search" />
+            <div onFocus={clickedSearch} className="div2__center__searchIcons" role="button">
+              <div id="searchIcons--active">
+                <span style={{ marginRight: "6px", verticalAlign: "baseline", backgroundSize: "440px 411px", backgroundPosition: "-428px -241px", width: "10px", height: "10px" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                  </svg>
+                </span>
+                <input id="searchIcons__input" style={{ background: "transparent", border: "none", width: "199px" }} />
+                <span id="searchIcons--searchText" style={{ display: "inline-block", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", verticalAlign: "bottom", whiteSpace: "nowrap" }}>Search</span>
+              </div>
+              <div id="searchIcons" style={{ display: "inline", left: "-5px", bottom: "2px" }}>
+                <span style={{ display: "inline-block", marginRight: "6px", verticalAlign: "baseline", backgroundSize: "440px 411px", backgroundPosition: "-428px -241px", width: "10px", height: "10px" }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                  </svg>
+                </span>
+                <span style={{ display: "inline-block", maxWidth: "140px", overflow: "hidden", textOverflow: "ellipsis", verticalAlign: "bottom", whiteSpace: "nowrap" }}>Search</span>
+              </div>
+            </div>
+            {/* <div style={{ width: "30px", height: "30px" }}>
               <div className="div2__center__pic"></div>
               <span className="div2__center__span">Demo</span>
-            </div>
+            </div> */}
           </div>
           <div className="nav__div2__right">
             <div className="div2__right__icons">
