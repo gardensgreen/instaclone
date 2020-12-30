@@ -12,14 +12,14 @@
 
 #imgContainer {
 	position: relative;
-	height: 200px;
+	height: auto;
 	width: 100%;
 	overflow: hidden;
 	padding: 20px;
 }
 
 #postImage {
-	width: 450px;
+	width: 400px;
 	height: auto;
 	overflow: hidden;
 }
@@ -40,7 +40,9 @@
 }
 
 #captionLabel {
-	/* padding: 20px; */
+	position: relative;
+	padding-right: 10px;
+	font-size: 15px;
 }
 
 #imgCaptionInput {
@@ -58,11 +60,16 @@
 
 #imgPostButton {
 	cursor: pointer;
-	background-color: #0095f6;
+	background-color: #b2dffc;
 	border-radius: 3px;
-	border: 1px solid #0095f6;
+	border: none;
 	color: white;
-	width: 55px;
-	height: 20px;
+	width: 60px;
+	height: 30px;
 	margin: 20px;
+	transition: 0.3s;
+}
+
+#imgPostButton:hover {
+	background-color: #0095f6;
 }

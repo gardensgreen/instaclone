@@ -33,7 +33,9 @@ export default function () {
 				files: [file],
 			},
 		} = e;
-		setImagePreview(URL.createObjectURL(e.target.files[0]));
+		e.target.files[0]
+			? setImagePreview(URL.createObjectURL(e.target.files[0]))
+			: setImagePreview(null);
 		return validity.valid && setImage(file);
 	};
 
