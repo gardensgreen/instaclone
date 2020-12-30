@@ -68,7 +68,7 @@
 
 .log-in-button {
     margin-top: 20px;
-    background-color: #0095f6;
+    background-color: #b2dffc;
 
     border: 0px;
     height: 33.33px;
@@ -84,15 +84,16 @@
 }
 
 .log-in-button:hover {
-    background-color: #b2dffc;
+    background-color: #0095f6;
 
     cursor: pointer;
 }
 
 .sign-up-button {
     margin-top: 20px;
-    background-color: #b2dffc;
     border: 0px;
+    background-color: #ad6bf8;
+
     height: 33.33px;
     /* letter-spacing: 0.1rem; */
     color: #f5f7f9;
@@ -106,7 +107,8 @@
 }
 
 .sign-up-button:hover {
-    background-color: #0095f6;
+    background-color: #b2dffc;
+    background-color: #8929f7;
 
     cursor: pointer;
 }
@@ -128,4 +130,5 @@
     text-decoration: None;
     margin: 15px;
     color: rgb(65, 65, 65);
+    font-size: 0.8rem;
 }

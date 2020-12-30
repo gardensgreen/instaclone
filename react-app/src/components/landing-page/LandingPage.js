@@ -1,15 +1,19 @@
 import React from "react";
 import Particles from "react-particles-js";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 import "./LandingPage.css";
-export default function LandingPage() {
+export default function LandingPage({ authenticated }) {
+    if (authenticated) {
+        return <Redirect to="/" />;
+    }
+
     return (
         <>
             <div className="landing__container">
                 <div className="header__container">
-                    <i class="fab fa-instagram fa-3x"></i>
-                    <h1 class="landing-title"></h1>
+                    <i className="fab fa-instagram fa-3x"></i>
+                    <h1 className="landing-title"></h1>
                 </div>
                 <div className="main__container">
                     <div className="grid__container">
@@ -80,7 +84,7 @@ export default function LandingPage() {
                         href="https://github.com/gardensgreen/instaclone"
                         className="footer-link"
                     >
-                        <i class="fab fa-github fa-2x"></i>
+                        <i className="fab fa-github fa-2x"></i>
                     </a>
                     <a href="https://linkedin.com" className="footer-link">
                         Elijah Hubbard
