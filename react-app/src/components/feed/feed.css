@@ -18,9 +18,15 @@ body {
 .post-profile-pic {
     width: 30px;
     height: 30px;
-    border-radius: 15px;
+    border-radius: 30px;
     overflow: hidden;
     padding: 3px;
+}
+
+.post-comment-holder a {
+    color: grey;
+    font-weight: lighter;
+    font-size: medium;
 }
 
 .post-text {
