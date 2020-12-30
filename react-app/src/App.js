@@ -6,9 +6,9 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-// import UploadUser from "./components/upload-post/UploadPost";
+// import UploadUser from "./components/upload-post/PostForm";
 import { authenticate } from './services/auth';
-import UploadPost from './components/upload-post/UploadPost';
+import PostForm from './components/upload-post/PostForm';
 import CommentForm from './components/comment/CommentForm';
 
 function App() {
@@ -48,10 +48,9 @@ function App() {
 				<h1>My Home Page</h1>
 			</ProtectedRoute>
 			<ProtectedRoute path='/posts/new' exact={true} authenticated={authenticated}>
-				<UploadPost></UploadPost>
+				<PostForm></PostForm>
 			</ProtectedRoute>
 			<ProtectedRoute path='/posts/:postId' exact={true} authenticated={authenticated}>
-				<h1>Post is here</h1>
 				<CommentForm postId={1}></CommentForm>
 			</ProtectedRoute>
 		</BrowserRouter>
