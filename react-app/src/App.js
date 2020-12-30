@@ -5,6 +5,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import Feed from './components/feed';
 import User from './components/User';
 // import UploadUser from "./components/upload-post/UploadPost";
 import { authenticate } from './services/auth';
@@ -51,7 +52,7 @@ function App() {
 				</ProtectedRoute>
 				<ProtectedRoute path='/' exact={true} authenticated={authenticated}>
 					<NavBar setAuthenticated={setAuthenticated} />
-					<h1>My Home Page</h1>
+					<Feed />
 				</ProtectedRoute>
 				<ProtectedRoute path='/posts/new' exact={true} authenticated={authenticated}>
 					<PostForm></PostForm>
