@@ -10,7 +10,7 @@ const Post = ({ post, user, users, myUserId }) => {
     const genCommentsJSX = () => {
         return comments.length <= 3 ? (
             comments.map((c) => (
-                <div className="post-comment">
+                <div key={`${post.id}-${c.id}`} className="post-comment">
                     <b>{users[c.userId].username}</b> {c.comment}
                 </div>
             ))
@@ -83,14 +83,18 @@ const Post = ({ post, user, users, myUserId }) => {
                     <b>{user.username}</b> {post.description}
                 </div>
                 <div className="post-comment-holder">{genCommentsJSX()}</div>
-                <form onSubmit={submitComment}>
+                <form className="comment-form" onSubmit={submitComment}>
                     <textarea
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder="Add a comment"
                         className="post-comment-field"
                     />
-                    <input value="Comment" type="submit" />
+                    <input
+                        className="comment-submit"
+                        value="Comment"
+                        type="submit"
+                    />
                 </form>
             </div>
         </div>
