@@ -1,9 +1,0 @@
-{
-    "python.pythonPath": "/Users/elijahhubbard/.pyenv/versions/3.8.6/bin/python",
-    "python.linting.pylintEnabled": false,
-    "python.linting.enabled": true,
-    "python.linting.pycodestyleEnabled": true,
-    "cSpell.words": [
-        "jsonify"
-    ]
-}
