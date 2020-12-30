@@ -68,7 +68,15 @@ def create_post():
 @post_routes.route('/<int:id>', methods=['GET'])
 def read_post(id):
     post = Post.query.get(id)
-    return jsonify(post.to_dict())
+    users = {}
+    for comment in post.comments:
+        if comment.userId not in users:
+            users[comment.userId] = comment.user.to_simple_dict()
+    if post.userId not in users:
+        users[post.userId] = post.user.to_simple_dict()
+    if current_user.id not in users:
+        users[current_user.id] = current_user.to_simple_dict()
+    return jsonify({'post':post.to_dict(), 'users':users})
 
 # Read Posts (Post Feed)
 @post_routes.route('/', methods=['GET'])
