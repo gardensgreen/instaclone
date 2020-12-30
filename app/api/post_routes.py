@@ -18,7 +18,13 @@ s3 = boto3.client('s3',
 BUCKET_NAME = 'insta-group-project'
 
 
+def spaceRemover(filename):
+  list_filename = filename.split(' ')
+  return '+'.join(list_filename)
+
 # AWS s3 Helper
+
+
 def upload_file_to_s3(file, userId, bucket_name, acl="public-read"):
     s3.upload_fileobj(
         file,
@@ -30,7 +36,7 @@ def upload_file_to_s3(file, userId, bucket_name, acl="public-read"):
         }
     )
 
-    return "{}{}".format('https://insta-group-project.s3.amazonaws.com/', file.filename)
+    return "{}{}".format('https://insta-group-project.s3.amazonaws.com/', spaceRemover(file.filename))
 
 # Create Post
 @post_routes.route('/', methods=["POST"])
