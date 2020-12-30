@@ -51,7 +51,7 @@ export default function () {
 			return (
 				<div onClick={handleUploadImage}>
 					<img id='postImage' src={imagePreview} />
-					<h2 id='imgUploadPrompt'>Change Your Image</h2>
+					<h2 id='imgUploadPrompt'>Change Image</h2>
 				</div>
 			);
 		}

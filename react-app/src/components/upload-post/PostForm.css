@@ -11,7 +11,7 @@
 
 #postImage {
 	height: 200px;
-	width: auto;
+	width: 200px;
 	overflow: hidden;
 	padding: 20px;
 }
