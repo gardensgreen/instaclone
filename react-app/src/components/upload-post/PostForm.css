@@ -1,7 +1,8 @@
 #postFormContainer {
 	width: 500px;
 	height: 100%;
-	border: 1px solid black;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,11 +10,18 @@
 	color: rgba(var(--i1d, 38, 38, 38), 1);
 }
 
-#postImage {
+#imgContainer {
+	position: relative;
 	height: 200px;
-	width: 200px;
+	width: 100%;
 	overflow: hidden;
 	padding: 20px;
+}
+
+#postImage {
+	width: 450px;
+	height: auto;
+	overflow: hidden;
 }
 
 #imgUploadPrompt {
@@ -21,6 +29,7 @@
 	color: rgba(var(--i1d, 38, 38, 38), 1);
 	font-weight: 500;
 	cursor: pointer;
+	text-align: center;
 }
 
 #imgCaptionContainer {
@@ -46,6 +55,7 @@
 	border: 2px solid black;
 	border-radius: 3px;
 }
+
 #imgPostButton {
 	cursor: pointer;
 	background-color: #0095f6;

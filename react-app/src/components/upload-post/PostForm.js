@@ -50,8 +50,10 @@ export default function () {
 		} else {
 			return (
 				<div onClick={handleUploadImage}>
-					<img id='postImage' src={imagePreview} />
-					<h2 id='imgUploadPrompt'>Change Image</h2>
+					<div id='imgContainer'>
+						<img id='postImage' src={imagePreview} />
+					</div>
+					<h1 id='imgUploadPrompt'>Change Image</h1>
 				</div>
 			);
 		}
