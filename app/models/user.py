@@ -3,12 +3,14 @@ from .like import Like
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 follow = db.Table(
     "follow",
     db.Model.metadata,
     db.Column("followerId", db.Integer, db.ForeignKey("users.id")),
-    db.Column("followingId", db.Integer, db.ForeignKey("users.id"))
+    db.Column("followingId", db.Integer, db.ForeignKey("users.id")),
+    db.Column("timestamp", db.DateTime, default=datetime.now())
 )
 
 
