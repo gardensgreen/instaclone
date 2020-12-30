@@ -1,0 +1,58 @@
+#postFormContainer {
+	width: 500px;
+	height: 100%;
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+
+#postImage {
+	height: 200px;
+	width: auto;
+	overflow: hidden;
+	padding: 20px;
+}
+
+#imgUploadPrompt {
+	font-size: 20px;
+	color: rgba(var(--i1d, 38, 38, 38), 1);
+	font-weight: 500;
+	cursor: pointer;
+}
+
+#imgCaptionContainer {
+	padding: 20px;
+	display: flex;
+	align-items: flex-start;
+	width: 450px;
+}
+
+#captionLabel {
+	/* padding: 20px; */
+}
+
+#imgCaptionInput {
+	border: 1px solid lightgray;
+	width: 400px;
+	height: 100px;
+	resize: none;
+}
+
+#imgCaptionInput:focus {
+	outline: none;
+	border: 2px solid black;
+	border-radius: 3px;
+}
+#imgPostButton {
+	cursor: pointer;
+	background-color: #0095f6;
+	border-radius: 3px;
+	border: 1px solid #0095f6;
+	color: white;
+	width: 55px;
+	height: 20px;
+	margin: 20px;
+}
