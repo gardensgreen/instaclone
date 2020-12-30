@@ -10,9 +10,9 @@
 }
 
 .post-profile-pic {
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
@@ -23,6 +23,7 @@
     outline: 1px solid rgba(.3, .3, .3, .25);
     margin-top: 5px;
     margin-bottom: 5px;
+    background-color: white;
 }
 
 .post-img-holder {
