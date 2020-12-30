@@ -9,7 +9,7 @@ const Post = ({post, user, users, myUserId}) => {
     const [likeUsers, setLikeUsers] = useState(post.likers)
 
     const genCommentsJSX = () => {
-        return comments.length <= 3 ? comments.map(c => <div className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>) :
+        return comments.length <= 3 ? comments.map(c => <div key={`${post.id}-${c.id}`}className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>) :
         (
             <>
                 <div className="post-comment"><b>{users[comments[0].userId].username}</b> {comments[0].comment}</div>
