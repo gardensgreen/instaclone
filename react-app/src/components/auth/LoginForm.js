@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
+import Particles from "react-particles-js";
 
 import "./LoginForm.css";
 
@@ -44,7 +45,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     return (
         <>
             <div className="login-form__container">
-                <h1 className="form-title">Instaclone</h1>
+                <h1 className="form-title">Log In</h1>
                 <form className="login-form" onSubmit={onLogin}>
                     <div>
                         {errors.map((error) => (
@@ -87,13 +88,37 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                 </div>
             </div>
             <div className="sign-up__container">
-                <p class="sign-up-text">
+                <p className="sign-up-text">
                     Don't have an account?{" "}
-                    <NavLink class="sign-up-link" to="/sign-up">
+                    <NavLink className="sign-up-link" to="/sign-up">
                         Sign up
                     </NavLink>
                 </p>
             </div>
+            <Particles
+                className="particles"
+                params={{
+                    particles: {
+                        color: {
+                            value: "#0095f6",
+                        },
+                        number: {
+                            value: 50,
+                        },
+                        size: {
+                            value: 4,
+                        },
+                    },
+                    interactivity: {
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: "repulse",
+                            },
+                        },
+                    },
+                }}
+            />
         </>
     );
 };

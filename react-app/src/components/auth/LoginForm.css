@@ -12,7 +12,7 @@
 
 .form-title {
     display: inline;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 30px;
 }
 
@@ -54,10 +54,9 @@
     background-color: #b2dffc;
     border: 0px;
     height: 33.33px;
-    letter-spacing: 0.1rem;
+    /* letter-spacing: 0.1rem; */
     color: #f5f7f9;
     border-radius: 3px;
-
     font-size: 0.7rem;
     font-weight: bold;
     transition: background-color 0.5s;
@@ -79,6 +78,7 @@
     border-top: 1px solid #9ea5ad;
     display: block;
     line-height: 1px;
+
     margin: 15px 20px;
     position: relative;
     text-align: center;
@@ -103,8 +103,8 @@
     background-color: #fff;
     border: 0px;
     height: 33.33px;
-    letter-spacing: 0.1rem;
-    color: #0095f6;
+
+    color: #046aad;
     border-radius: 3px;
     font-size: 0.7rem;
     font-weight: bold;
@@ -123,4 +123,13 @@
 .sign-up-link {
     text-decoration: none;
     color: #0095f6;
+}
+
+.particles {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
