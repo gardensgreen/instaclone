@@ -22,10 +22,24 @@ function UsersList() {
   });
 
   return (
-    <>
-      <h1>User List: </h1>
-      <ul>{userComponents}</ul>
-    </>
+    <main className="main__backgroundColor">
+      <div className="userProfile__main__div">
+        <header className="main__div__header">
+          <div style={{ width: "291px", height: "194px", marginRight: "30px" }}>
+            <div style={{ width: "150px", height: "150px", cursor: "pointer", alignItems: "center", display: "block", justifyContent: "center" }}>
+              <span className="header__div__profilePicture">
+                Profil-Pic
+              </span>
+            </div>
+          </div>
+          <section style={{ width: "613px", height: "194px" }}>
+            <div style={{ marginBotton: "20px" }}>
+              <h2 className="section__div__userName">Demo</h2>
+            </div>
+          </section>
+        </header>
+      </div>
+    </main>
   );
 }
 
