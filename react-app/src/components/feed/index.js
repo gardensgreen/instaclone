@@ -19,7 +19,7 @@ const Feed = () => {
     return (
         loaded &&
         <div className="posts-holder">
-            {posts.length ? posts.map(post => <Post post={post} user={users[post.userId]}/>) : <h2>No Posts to see. Follow more People!</h2>}
+            {posts.length ? posts.map(post => <Post post={post} user={users[post.userId]} users={users}/>) : <h2>No Posts to see. Follow more People!</h2>}
         </div>
     );
 }

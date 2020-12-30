@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(10,10,10,.01);
+}
+
 .posts-holder {
     width: 100%;
     display: flex;
@@ -7,12 +11,29 @@
 
 .post-user-info {
     display:flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(.3, .3, .3, .25);
 }
 
 .post-profile-pic {
     width: 30px;
     height: 30px;
     border-radius: 15px;
+    overflow: hidden;
+    padding: 3px;
+}
+
+.post-text {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.post-bottom-info-holder {
+    padding: 3px;
+}
+
+.post-comment-holder {
+    max-height: 20vh;
     overflow: hidden;
 }
 

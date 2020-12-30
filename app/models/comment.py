@@ -8,6 +8,8 @@ class Comment(db.Model):
     postId = db.Column(db.Integer, db.ForeignKey('posts.id'))
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    user = db.relationship("User")
+
     def to_dict(self):
         return {
             "id": self.id,

@@ -67,13 +67,17 @@ def read_post(id):
 # Read Posts (Post Feed)
 @post_routes.route('/', methods=['GET'])
 def read_posts():
-    user = User.query.get(current_user.get_id())
+    #user = User.query.get(current_user.get_id())
+    user = current_user
     following_ids = [following.id for following in user.following]
     posts = Post.query.filter(Post.userId.in_(following_ids)).all()
     users = {}
     for post in posts:
         if post.userId not in users:
             users[post.userId] = post.user.to_simple_dict()
+        for comment in post.comments:
+            if comment.userId not in users:
+                users[comment.userId] = comment.user.to_simple_dict()
     return jsonify({"Posts": [post.to_dict() for post in posts], "users":users})
 
 
