@@ -63,7 +63,7 @@ export default function LandingPage({ authenticated }) {
                     <div className="content__container">
                         <h2 className="content-title">
                             Bringing you closer to the people and things you
-                            love.
+                            love most.
                         </h2>
                         <NavLink to="/login" className="log-in-button">
                             <span className="log-in-text">Log In</span>
