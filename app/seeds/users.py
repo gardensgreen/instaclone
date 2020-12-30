@@ -27,6 +27,16 @@ def seed_users():
     seed_user9 = User(username='Chris', email='chris@aa.io',
                       password='password', avatarUrl='https://uifaces.co/our-content/donated/noplz47r59v1uxvyg8ku.png', bio="dummy bio")
 
+    seed_user1.followers.append(demo)
+    seed_user2.followers.append(demo)
+    seed_user3.followers.append(demo)
+    seed_user4.followers.append(demo)
+    seed_user5.followers.append(demo)
+    seed_user6.followers.append(demo)
+    seed_user7.followers.append(demo)
+    seed_user8.followers.append(demo)
+    seed_user9.followers.append(demo)
+
     db.session.add(demo)
     db.session.add(seed_user1)
     db.session.add(seed_user2)
