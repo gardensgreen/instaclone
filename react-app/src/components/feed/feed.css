@@ -59,6 +59,10 @@ body {
     width: 100%;
 }
 
+.post-likes i {
+    cursor: pointer;
+}
+
 .post-img-holder img {
     max-width: 100%;
     max-height: 80vh;

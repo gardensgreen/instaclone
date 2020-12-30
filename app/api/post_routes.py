@@ -117,11 +117,11 @@ def likePost(id):
     if user.id not in likingUserIds:
         post.likingUsers.append(user)
         db.session.commit()
-        return jsonify({"addedLike":True})
+        return jsonify(post.to_dict())
     else:
         post.likingUsers.remove(user)
         db.session.commit()
-        return jsonify({"removedLike":True})
+        return jsonify(post.to_dict())
 
 
 @post_routes.route('/<int:id>/comments', methods=["POST"])
