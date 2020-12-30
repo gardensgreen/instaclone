@@ -97,6 +97,7 @@ def delete_post(id):
     db.session.commit()
     return jsonify(post.to_dict())
 
+
 @post_routes.route('/<int:id>/likes', methods=["POST"])
 @login_required
 def likePost(id):
@@ -123,7 +124,9 @@ def comment(id):
     db.session.commit()
     return jsonify(post.to_dict())
 
+
 @post_routes.route('/<int:postId>/comments/<int:commentId>', methods=["DELETE"])
+# @login_required
 def deleteComment(postId, commentId):
     comment = Comment.query.get(commentId)
     post = Post.query.get(postId)
@@ -131,10 +134,11 @@ def deleteComment(postId, commentId):
     db.session.commit()
     return jsonify(post.to_dict())
 
+
 @post_routes.route('/<int:postId>/comments/<int:commentId>', methods=["PATCH"])
+# @login_required
 def editComment(postId, commentId):
     comment = Comment.query.get(commentId)
     comment.comment = request.json["comment"]
     db.session.commit()
     return jsonify(comment.to_dict())
-
