@@ -68,16 +68,16 @@ const Post = ({ post, user, users, myUserId }) => {
                 <img alt={post.description} src={post.photoUrl} />
             </div>
             <div className="post-bottom-info-holder">
+                <i
+                    onClick={like}
+                    className={
+                        likeUsers.includes(myUserId)
+                            ? "fas fa-heart fa-lg"
+                            : "far fa-heart fa-lg"
+                    }
+                ></i>
                 <div className="post-likes">
                     {numLikes} {numLikes !== 1 ? "likes" : "like"}{" "}
-                    <i
-                        onClick={like}
-                        className={
-                            likeUsers.includes(myUserId)
-                                ? "fas fa-heart"
-                                : "far fa-heart"
-                        }
-                    ></i>
                 </div>
                 <div className="post-text">
                     <b>{user.username}</b> {post.description}

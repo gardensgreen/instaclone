@@ -82,10 +82,12 @@ body {
 .fas {
     color: red;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .far {
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .post-img-holder img {
