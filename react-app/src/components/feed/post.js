@@ -9,7 +9,7 @@ const Post = ({post, user, users, myUserId}) => {
     const [likeUsers, setLikeUsers] = useState(post.likers)
 
     const genCommentsJSX = () => {
-        return comments.length <= 3 ? comments.map(c => <div className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>) :
+        return comments.length <= 3 ? comments.map(c => <div key={`${post.id}-${c.id}`}className="post-comment"><b>{users[c.userId].username}</b> {c.comment}</div>) :
         (
             <>
                 <div className="post-comment"><b>{users[comments[0].userId].username}</b> {comments[0].comment}</div>
@@ -49,10 +49,10 @@ const Post = ({post, user, users, myUserId}) => {
                 <div className="post-author-name">{user.username}</div>
             </div>
             <div className="post-img-holder">
-                <img src={post.photoUrl} />
+                <img alt={post.description} src={post.photoUrl} />
             </div>
             <div className="post-bottom-info-holder">
-                <div className="post-likes">{numLikes} {numLikes != 1 ? "likes" : "like"} <i onClick={like} className={likeUsers.includes(myUserId) ? "fas fa-heart":"far fa-heart"}></i>
+                <div className="post-likes">{numLikes} {numLikes !== 1 ? "likes" : "like"} <i onClick={like} className={likeUsers.includes(myUserId) ? "fas fa-heart":"far fa-heart"}></i>
                 </div>
                 <div className="post-text"><b>{user.username}</b> {post.description}</div>
                 <div className="post-comment-holder">
