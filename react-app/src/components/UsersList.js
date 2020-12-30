@@ -36,6 +36,26 @@ function UsersList() {
             <div style={{ marginBotton: "20px" }}>
               <h2 className="section__div__userName">Demo</h2>
             </div>
+            <ul style={{ marginBottom: "20px", display: "flex", flexDirection: "row" }}>
+              <li style={{ marginLeft: "0px", marginRight: "40px", fontSize: "16px", display: "list-item" }}>
+                <span>
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>10 </span>
+                  posts
+                </span>
+              </li>
+              <li style={{ marginRight: "40px", fontSize: "16px" }}>
+                <a style={{ color: "inherit", textDecoration: "none" }} href="/demo/followers" tabIndex="0">
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }} title="600">600 </span>
+                  followers
+                </a>
+              </li>
+              <li style={{ marginRight: "0", fontSize: "16px" }}>
+                <a style={{ color: "inherit", textDecoration: "none" }} href="/demo/following" tabIndex="0">
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>400 </span>
+                  following
+                </a>
+              </li>
+            </ul>
           </section>
         </header>
       </div>
