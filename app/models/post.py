@@ -10,6 +10,8 @@ class Post(db.Model):
     photoUrl = db.Column(db.String(100), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    user = relationship("User")
+
     comments = relationship('Comment')
     likingUsers = relationship("User", secondary=Like, back_populates="likedPosts")
     # primaryjoin=id==Like.c.postId, secondaryjoin=id==Like.c.userId

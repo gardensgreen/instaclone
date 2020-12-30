@@ -49,3 +49,9 @@ class User(db.Model, UserMixin):
       "avatarUrl": self.avatarUrl,
       "bio": self.bio
     }
+
+  def to_simple_dict(self):
+    return {
+      "username": self.username,
+      "avatarUrl": self.avatarUrl,
+    }

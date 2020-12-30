@@ -5,11 +5,22 @@
     align-items: center;
 }
 
+.post-user-info {
+    display:flex;
+}
+
+.post-profile-pic {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
 .one-post-holder {
     display: flex;
     flex-direction: column;
     width: 50vw;
-    outline: 1px solid rgba(.3, .3, .3, .5);
+    outline: 1px solid rgba(.3, .3, .3, .25);
     margin-top: 5px;
     margin-bottom: 5px;
 }
