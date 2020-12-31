@@ -7,7 +7,7 @@ from app.models import db, User
 def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
-                password='password')
+                password='password', avatarUrl='/images/default-avatar.jpg')
     seed_user1 = User(username='Sara', email='sara@aa.io',
                       password='password', avatarUrl='https://uifaces.co/our-content/donated/3799Ffxy.jpeg', bio="dummy bio")
     seed_user2 = User(username='Ian', email='ian@aa.io',

@@ -42,6 +42,9 @@
 	border-radius: 50%;
 	display: inline;
 	overflow: hidden;
+	object-fit: cover;
+	/* background-size: cover;
+	background-position: center center; */
 }
 
 #avatarImageRing {
@@ -145,7 +148,7 @@
 }
 
 #profileSubmitButton:focus {
-	background-color: #b2dffc;
+	background-color: #0095f6;
 	outline: none;
 }
 
