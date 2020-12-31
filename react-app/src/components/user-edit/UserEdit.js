@@ -7,6 +7,7 @@ export default function UserEdit() {
 	const [myUserId, setMyUserId] = useState(null);
 	const [loaded, setLoaded] = useState(false);
 	const [username, setUsername] = useState(null);
+	const [currUsername, setCurrUsername] = useState(null);
 	const [email, setEmail] = useState(null);
 	const [bio, setBio] = useState('');
 	const [avatarUrl, setAvatarUrl] = useState(null);
@@ -22,12 +23,14 @@ export default function UserEdit() {
 				let res = await fetch(`/api/users/${myUserId}`);
 				res = await res.json();
 				setUsername(res.username);
+				setCurrUsername(res.username);
 				setEmail(res.email);
 				res.bio ? setBio(res.bio) : setBio('');
 				setAvatarUrl(res.avatarUrl);
 				setLoaded(true);
 			}
 		};
+
 		getUserInfo();
 	}, [myUserId]);
 
@@ -86,42 +89,54 @@ export default function UserEdit() {
 
 	return (
 		loaded && (
-			<div>
-				<form onSubmit={handleSubmit}>
-					<div>
-						<label>Profile Photo</label>
-						<div id='avatarImageRing'>{avatarImg()}</div>
-						<div onClick={handleUploadImage}>
-							<p id='imgUploadLink'>Change Your Profile Photo</p>
+			<div id='userEditContainer'>
+				<form id='userEditBox' onSubmit={handleSubmit}>
+					<div id='profilePhotoBox'>
+						<div id='avatarBox'>
+							<div id='avatarImageRing'>{avatarImg()}</div>
+						</div>
+						<div id='profilePhotoUploadBox'>
+							<label>{currUsername}</label>
+							<div onClick={handleUploadImage}>
+								<p id='imgUploadLink'>Change Profile Photo</p>
+							</div>
+							<input
+								ref={uploadInput}
+								style={{ display: 'none' }}
+								type='file'
+								name='file'
+								onChange={updateFile}
+							/>
+						</div>
+					</div>
+					<div class='profileInputBox'>
+						<div class='profileInputLabelBox'>
+							<label class='profileInputLabel'>Username</label>
 						</div>
 						<input
-							ref={uploadInput}
-							style={{ display: 'none' }}
-							type='file'
-							name='file'
-							onChange={updateFile}
-						/>
-					</div>
-					<div>
-						<label>Username</label>
-						<input
+							class='profileInput'
 							value={username}
 							name='username'
 							placeholder='Username'
 							onChange={e => setUsername(e.target.value)}
 						/>
 					</div>
-					<div>
-						<label>Email</label>
+					<div class='profileInputBox'>
+						<div class='profileInputLabelBox'>
+							<label class='profileInputLabel'>Email</label>
+						</div>
 						<input
+							class='profileInput'
 							value={email}
 							name='email'
 							placeholder='Email'
 							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
-					<div>
-						<label>Bio</label>
+					<div class='profileInputBox'>
+						<div class='profileInputLabelBox'>
+							<label class='profileInputLabel'>Bio</label>
+						</div>
 						<textarea
 							id='bioInput'
 							value={bio}
@@ -130,8 +145,11 @@ export default function UserEdit() {
 							onChange={e => setBio(e.target.value)}
 						/>
 					</div>
-					<div>
-						<input id='userEditSubmitButton' type='submit' value='Submit' />
+					<div class='profileInputBox'>
+						<div id='profileSubmitButtonSpacer'></div>
+						<div>
+							<input id='profileSubmitButton' type='submit' value='Submit' />
+						</div>
 					</div>
 				</form>
 			</div>

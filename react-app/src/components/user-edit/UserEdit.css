@@ -1,35 +1,55 @@
+#userEditContainer {
+	display: flex;
+	justify-content: center;
+}
+
+#userEditBox {
+	border: 1px solid lightgrey;
+	display: flex;
+	flex-direction: column;
+	/* align-items: flex-start; */
+	width: 600px;
+	min-width: 250px;
+	margin: 20px;
+	padding: 20px 40px 20px 20px;
+}
+
+#profilePhotoBox {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	height: 70px;
+	width: 100%;
+	margin-bottom: -10px;
+}
+
+#avatarBox {
+	padding-right: 34px;
+	margin-left: 155px;
+}
+
+#profilePhotoUploadBox {
+	display: flex;
+	flex-direction: column;
+	margin-top: 10px;
+	/* justify-content: space-around; */
+}
+
 #avatarImage {
 	vertical-align: middle;
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	border-radius: 50%;
 	display: inline;
 	overflow: hidden;
-}
-
-#imgUploadLink {
-	color: #0095f6;
-	font-size: 13px;
-	width: 200px;
-	height: 30px;
-	transition: 0.3s;
-	cursor: pointer;
-}
-
-#bioInput {
-	resize: none;
-}
-
-#imgUploadLink:active {
-	color: #b2dffc;
 }
 
 #avatarImageRing {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 56px;
-	height: 56px;
+	width: 51px;
+	height: 51px;
 	border-radius: 50%;
 	background-image: linear-gradient(
 		45deg,
@@ -41,4 +61,94 @@
 		#cc2a92 80%,
 		#c32e92 95%
 	);
+}
+
+#imgUploadLink {
+	color: #0095f6;
+	font-size: 13px;
+	width: 200px;
+	height: 30px;
+	transition: 0.3s;
+	cursor: pointer;
+	margin: 0px;
+	font-weight: 600;
+}
+
+#imgUploadLink:active {
+	color: #b2dffc;
+}
+
+.profileInputBox {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	height: 70px;
+	padding: 10px;
+}
+
+.profileInputLabelBox {
+	min-width: 200px;
+	text-align: right;
+	margin-top: 5px;
+	padding-right: 30px;
+	/* max-height: 30px; */
+}
+
+.profileInputLabel {
+	font-weight: 600;
+}
+
+.profileInput {
+	max-height: 25px;
+	width: 100%;
+	min-width: 100px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+	padding-left: 8px;
+	margin-right: 30px;
+}
+
+#bioInput {
+	padding-left: 8px;
+	padding-top: 8px;
+	width: 100%;
+	min-width: 100px;
+	min-height: 75px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+	margin-right: 30px;
+	resize: vertical;
+}
+
+::-webkit-input-placeholder {
+	color: lightgrey;
+}
+
+::-moz-placeholder {
+	color: lightgrey;
+}
+
+#profileSubmitButton {
+	cursor: pointer;
+	background-color: #b2dffc;
+	border-radius: 3px;
+	border: none;
+	color: white;
+	width: 75px;
+	height: 30px;
+	margin: 20px;
+	transition: 0.3s;
+}
+
+#profileSubmitButton:hover {
+	background-color: #0095f6;
+}
+
+#profileSubmitButton:focus {
+	background-color: #b2dffc;
+	outline: none;
+}
+
+#profileSubmitButtonSpacer {
+	width: 210px;
 }
