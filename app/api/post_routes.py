@@ -78,7 +78,8 @@ def read_post(id):
     if current_user.id not in users:
         users[current_user.id] = current_user.to_simple_dict()
     recomended = getRecomendedPosts(post.id, post)
-    return jsonify({'post':post.to_dict(), 'users':users, "recomended":recomended})
+    canFollow = current_user and current_user not in post.user.followers
+    return jsonify({'post':post.to_dict(), 'users':users, "recomended":recomended, 'canFollow':canFollow})
 
 def getRecomendedPosts(id, p=None):
     post = p or Post.query.get(id)
