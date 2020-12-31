@@ -129,6 +129,7 @@ body {
     height: 30vh;
     margin: 20px;
     outline: 1px solid rgba(10, 10, 10, .1);
+    cursor: pointer;
 }
 
 .rec-img-holder {
