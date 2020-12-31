@@ -37,6 +37,7 @@ export default function UserEdit() {
 	const handleSubmit = async e => {
 		//Handle form submit
 		e.preventDefault();
+		setLoaded(false);
 		const formData = new FormData();
 		formData.append('file', avatarImage);
 		formData.append('username', username);
