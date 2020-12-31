@@ -23,7 +23,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
     const loginDemo = async (e) => {
         e.preventDefault();
-        const user = await login("demo@demo.com", "password");
+        const user = await login("demo@aa.io", "password");
         if (!user.errors) {
             setAuthenticated(true);
         }
