@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {authenticate} from "../../services/auth"
-import {useParams} from "react-router-dom"
+import {authenticate} from "../../services/auth";
+import {useParams} from "react-router-dom";
+import RecomendedPost from "./recomenedPost";
 import "./post.css"
 
 const Post = () => {
@@ -15,6 +16,7 @@ const Post = () => {
     const [likeUsers, setLikeUsers] = useState([]);
     const [numLikes, setNumLikes] = useState(0);
     const [myUserId, setMyUserId] = useState(null)
+    const [recomendedPosts, setRecomendedPosts] = useState([])
     useEffect(() =>{
         (async () => {
             let res = await fetch(`/api/posts/${postId}`);
@@ -28,6 +30,8 @@ const Post = () => {
             setLikeUsers(res.post.likers);
             setNumLikes(res.post.numLikes)
             setMyUserId((await authenticate()).id)
+            setRecomendedPosts(res.recomended);
+
         })()
     }, [postId]);
 
@@ -84,6 +88,9 @@ const Post = () => {
                     </div>
                 </div>
             </div>
+                <div className="recomended-post-holder">
+                    {recomendedPosts.map((r, idx) => <RecomendedPost key={`rec-${idx}`} rec={r}/>)}
+                </div>
         </div>
     )
 }
