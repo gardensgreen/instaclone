@@ -4,8 +4,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
+import Profile from "./components/Profile";
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -43,11 +42,11 @@ function App() {
         </Route>
         <ProtectedRoute path={`/${userdata.username}`} exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
-          <UsersList userdata={userdata}/>
+          <Profile userdata={userdata}/>
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute>
+        {/* <ProtectedRoute path={`/`} authenticated={authenticated}>
+          <UserPage />
+        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
           <h1>My Home Page</h1>
