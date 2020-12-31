@@ -52,6 +52,17 @@ const Post = () => {
         setNewComment("");
     }
 
+    const follow = async e => {
+        e.preventDefault();
+        let res = await fetch(`/api/users/${poster}/follower`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({followerId: myUserId}),
+        })
+        res = await res.json();
+        setCanFollow(!res.added);
+    }
+
     const like = async (e) => {
         e.preventDefault();
         let res = await fetch(`/api/posts/${postId}/likes`, {
@@ -73,7 +84,7 @@ const Post = () => {
                     <div className="poster-info">
                         <img alt="user avatar" src={users[poster].avatarUrl}/>
                         <div>{users[poster].username}</div>
-                        {canFollow ? <div className="post-follow-link">Follow</div> : null}
+                        {canFollow ? <div onClick={follow} className="post-follow-link">Follow</div> : null}
                     </div>
                     <div className="post-comments-holder">
                         {comments.map(c=><div key={c.id} className="post-comment">
