@@ -4,15 +4,24 @@
 	height: 50px;
 	border-radius: 50%;
 	display: inline;
-	/* border: 2px solid lightgrey; */
 	overflow: hidden;
 }
 
-#imgUploadPrompt {
-	font-size: 20px;
-	color: rgba(var(--i1d, 38, 38, 38), 1);
-	font-weight: 500;
+#imgUploadLink {
+	color: #0095f6;
+	font-size: 13px;
+	width: 200px;
+	height: 30px;
+	transition: 0.3s;
 	cursor: pointer;
+}
+
+#bioInput {
+	resize: none;
+}
+
+#imgUploadLink:active {
+	color: #b2dffc;
 }
 
 #avatarImageRing {
