@@ -10,6 +10,7 @@ const Post = () => {
     const [description, setDescription] = useState('');
     const [users, setUsers] = useState({});
     const [poster, setPoster] = useState(0);
+    const [newComent, setNewComment] = useState("");
     useEffect(()=>{
         (async () => {
             let res = await fetch(`/api/posts/${postId}`);
@@ -47,7 +48,7 @@ const Post = () => {
                     </div>
                     <div className="comment-submit">
                         <form onSubmit={submitComent}>
-                            <textarea placeholder="New Comment"/>
+                            <textarea value={newComent} onChange={e => setNewComment(e.target.value)} placeholder="New Comment"/>
                             <input value="Post Comment" type="submit"/>
                         </form>
                     </div>
