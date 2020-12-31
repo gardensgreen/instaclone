@@ -19,6 +19,7 @@ const Post = () => {
     const [recomendedPosts, setRecomendedPosts] = useState([])
     useEffect(() =>{
         (async () => {
+            setLoaded(false);
             let res = await fetch(`/api/posts/${postId}`);
             res = await res.json();
             setUsers(res.users);
