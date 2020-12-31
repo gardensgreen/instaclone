@@ -5,6 +5,13 @@ import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Profile from "./components/Profile";
+import Feed from './components/feed';
+import Post from "./components/post";
+import UserEdit from './components/user-edit/UserEdit';
+// import UploadUser from "./components/upload-post/UploadPost";
+import LandingPage from './components/landing-page/LandingPage';
+import PostForm from './components/upload-post/PostForm';
+// import CommentForm from './components/comment/CommentForm';
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -23,9 +30,9 @@ function App() {
     })();
   }, []);
 
-  if (!loaded) {
-    return null;
-  }
+	if (!loaded) {
+		return null;
+	}
 
   return (
     <BrowserRouter>
@@ -40,16 +47,32 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
-        <ProtectedRoute path={`/${userdata.username}`} exact={true} authenticated={authenticated}>
+        <Route path='/landing' exact={true}>
+          <LandingPage authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        </Route>
+        <ProtectedRoute path={`/user/:username`} exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
           <Profile userdata={userdata}/>
         </ProtectedRoute>
-        {/* <ProtectedRoute path={`/`} authenticated={authenticated}>
+        <ProtectedRoute path={`/users/:user/edit`} exact={true} authenticated={authenticated}>
+          <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
+          <UserEdit />
+        </ProtectedRoute>
+        {/* <ProtectedRoute path={`/$`} authenticated={authenticated}>
           <UserPage />
         </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
-          <h1>My Home Page</h1>
+          <Feed />
+        </ProtectedRoute>
+        <ProtectedRoute path="/posts/new" exact={true} authenticated={authenticated}>
+          <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
+          <PostForm />
+        </ProtectedRoute>
+        <ProtectedRoute path="/posts/:postId" exact={true} authenticated={authenticated}>
+          {/* <CommentForm postId={1}></CommentForm> */}
+          <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
+          <Post />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

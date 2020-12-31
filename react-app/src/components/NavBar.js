@@ -52,7 +52,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
     userDropdown.style.display = "none";
     clickableEle.style.display = "none";
     clickedOnUser = false;
-    history.push(`/${userdata.username}`);
+    history.push(`/user/${userdata.username}`);
   }
   const settingsButton = (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
     userDropdown.style.display = "none";
     clickableEle.style.display = "none";
     clickedOnUser = false;
-    history.push(`${userdata.username}/edit`)
+    history.push(`/users/${userdata.username}/edit`)
   }
 
   return (

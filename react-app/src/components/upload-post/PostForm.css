@@ -1,0 +1,117 @@
+#newPostForm {
+    display: flex;
+    justify-content: center;
+}
+
+#postFormContainer {
+    width: 500px;
+    height: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+
+#imgContainer {
+    position: relative;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#imgPlaceholder {
+    width: 400px;
+    height: 200px;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.tinycanvasprints.com%2Ftiny-canvas-prints%2Fimg%2Fplaceholder.png&f=1&nofb=1");
+    background-size: fit;
+
+    background-position: center;
+    border-radius: 2px;
+    margin: 20px;
+}
+
+#postImage {
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+}
+
+#imgUploadTitle {
+    display: inline;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#imgUploadButton {
+    background-color: #ad6bf8;
+    border-radius: 3px;
+    color: white;
+    width: 80px;
+    height: 30px;
+    outline: none;
+    border: none;
+    transition: 0.3s;
+}
+
+#imgUploadButton:hover {
+    background-color: #8929f7;
+}
+
+#imgCaptionContainer {
+    padding: 20px 20px 0px 20px;
+    width: 450px;
+    display: flex;
+    justify-content: center;
+}
+
+#captionLabel {
+    position: relative;
+    padding-right: 10px;
+    font-size: 15px;
+}
+
+#imgCaptionInput {
+    border: 1px solid lightgray;
+    width: 400px;
+    height: 100px;
+    resize: none;
+}
+
+#imgCaptionInput:focus {
+    outline: none;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+#imgPostButton {
+    cursor: pointer;
+    background-color: #b2dffc;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    width: 80px;
+    height: 30px;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+#imgPostButton:hover {
+    background-color: #0095f6;
+}
+
+#imgPostButton:focus {
+    background-color: #b2dffc;
+    outline: none;
+}
+
+#errorMsg {
+    padding-bottom: -10px;
+    margin-bottom: -5px;
+}

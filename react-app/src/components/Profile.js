@@ -1,39 +1,42 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+import RecomendedPost from './post/recomenedPost';
 
 function Profile(props) {
   const [user, setUsers] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  const { username } = useParams();
 
   useEffect(() => {
+    setLoaded(false);
     async function fetchData() {
-      const response = await fetch(`/api/users/${props.userdata.id}`);
+      const response = await fetch(`/api/users/${username}`);
       const responseData = await response.json();
       setUsers(responseData);
+      setLoaded(true);
     }
     fetchData();
   }, []);
 
-  let clickedFollowersButton = false;
-  const clickedFollowers = (e) => {
-    e.preventDefault();
-    const emptyDiv = window.document.querySelector(".clickable-element-userPage");
-    const followersWindow = window.document.getElementById("followersDiv");
-    if (clickedFollowersButton === false) {
-      emptyDiv.style.display = "flex";
-      followersWindow.style.display = "";
-      clickedFollowersButton = true;
-    } else {
-      emptyDiv.style.display = "none";
-      followersWindow.style.display = "none";
-      clickedFollowersButton = false;
-      e.stopPropagation();
-      return;
-    }
-  }
-  const clickedFollowing = (e) => {
-    return;
-  }
+  // let clickedFollowersButton = false;
+  // const clickedFollowers = (e) => {
+  //   e.preventDefault();
+  //   const emptyDiv = window.document.querySelector(".clickable-element-userPage");
+  //   const followersWindow = window.document.getElementById("followersDiv");
+  //   if (clickedFollowersButton === false) {
+  //     emptyDiv.style.display = "flex";
+  //     followersWindow.style.display = "";
+  //     clickedFollowersButton = true;
+  //   } else {
+  //     emptyDiv.style.display = "none";
+  //     followersWindow.style.display = "none";
+  //     clickedFollowersButton = false;
+  //     e.stopPropagation();
+  //     return;
+  //   }
+  // }
 
-  return (
+  return loaded && (
     <main className="main__backgroundColor">
       <div className="userProfile__main__div">
         <header className="main__div__header">
@@ -51,21 +54,21 @@ function Profile(props) {
             <ul style={{ marginBottom: "20px", display: "flex", flexDirection: "row", listStyle: "none", paddingLeft: "0px" }}>
               <li style={{ marginLeft: "0px", marginRight: "40px", fontSize: "16px", display: "list-item" }}>
                 <span>
-                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>10 </span>
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>{user.posts.length} </span>
                   posts
                 </span>
               </li>
               <li style={{ marginRight: "40px", fontSize: "16px" }}>
-                <a onClick={clickedFollowers} style={{ color: "inherit", textDecoration: "none" }} href="/demo/followers" tabIndex="0">
-                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }} title="600">600 </span>
+                <span style={{ color: "inherit" }} tabIndex="0">
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }} title="600">{user.numFollowers} </span>
                   followers
-                </a>
+                </span>
               </li>
               <li style={{ marginRight: "0", fontSize: "16px" }}>
-                <a onClick={clickedFollowing} style={{ color: "inherit", textDecoration: "none" }} href="/demo/following" tabIndex="0">
-                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>400 </span>
+                <span style={{ color: "inherit" }} tabIndex="0">
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>{user.numFollowing} </span>
                   following
-                </a>
+                </span>
               </li>
             </ul>
             <div className="section__div__bio"><p>{user.bio}</p></div>
@@ -90,7 +93,11 @@ function Profile(props) {
           </a>
         </div>
         <div className="div__posts__images">
-          <article className="posts__images__article"></article>
+          <article className="posts__images__article">
+            <div style={{ marginTop: "2vh" }} className="recomended-post-holder">
+              {user.posts.map(p => <RecomendedPost rec={p}/>)}
+            </div>
+          </article>
         </div>
       </div>
     </main>
