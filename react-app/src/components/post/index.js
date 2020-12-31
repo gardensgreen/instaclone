@@ -15,8 +15,10 @@ const Post = () => {
     const [newComent, setNewComment] = useState("");
     const [likeUsers, setLikeUsers] = useState([]);
     const [numLikes, setNumLikes] = useState(0);
-    const [myUserId, setMyUserId] = useState(null)
-    const [recomendedPosts, setRecomendedPosts] = useState([])
+    const [myUserId, setMyUserId] = useState(null);
+    const [recomendedPosts, setRecomendedPosts] = useState([]);
+    const [canFollow, setCanFollow] = useState(true);
+
     useEffect(() =>{
         (async () => {
             setLoaded(false);
@@ -27,11 +29,12 @@ const Post = () => {
             setComments([{userId:res.post.userId,comment:res.post.description},...res.post.comments]);
             setDescription(res.post.description);
             setPoster(res.post.userId);
-            setLoaded(true);
             setLikeUsers(res.post.likers);
             setNumLikes(res.post.numLikes)
             setMyUserId((await authenticate()).id)
             setRecomendedPosts(res.recomended);
+            setCanFollow(res.canFollow);
+            setLoaded(true);
 
         })()
     }, [postId]);
@@ -47,6 +50,17 @@ const Post = () => {
         res = await res.json();
         setComments([{userId:res.userId,comment:res.description},...res.comments]);
         setNewComment("");
+    }
+
+    const follow = async e => {
+        e.preventDefault();
+        let res = await fetch(`/api/users/${poster}/follower`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({followerId: myUserId}),
+        })
+        res = await res.json();
+        setCanFollow(!res.added);
     }
 
     const like = async (e) => {
@@ -70,6 +84,7 @@ const Post = () => {
                     <div className="poster-info">
                         <img alt="user avatar" src={users[poster].avatarUrl}/>
                         <div>{users[poster].username}</div>
+                        {canFollow ? <div onClick={follow} className="post-follow-link">Follow</div> : null}
                     </div>
                     <div className="post-comments-holder">
                         {comments.map(c=><div key={c.id} className="post-comment">

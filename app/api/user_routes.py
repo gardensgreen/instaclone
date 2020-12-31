@@ -89,7 +89,7 @@ def addFollower(id):
     # BODY JSON {followerId: (id of follower to ADD)}
     user = User.query.get(id)
     followerId = request.json["followerId"]
-    if current_user.get_id() != followerId:
+    if current_user.id != followerId:
         return jsonify({"error": "Not authorized"})
     follower = User.query.get(followerId)
     user.followers.append(follower)
