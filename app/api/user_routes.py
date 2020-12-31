@@ -43,11 +43,17 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>')
+# @user_routes.route('/<int:id>')
+# @login_required
+# def user(id):
+#     user = User.query.get(id)
+#     return user.to_dict()
+
+@user_routes.route("/<username>")
 @login_required
-def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
+def userParam(username):
+    user = User.query.filter_by(username = username).first()
+    return user.to_profile_dict()
 
 
 @user_routes.route('/<int:id>', methods=['PATCH'])
