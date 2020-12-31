@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { authenticate } from '../../services/auth';
 import './UserEdit.css';
 
@@ -15,12 +15,13 @@ export default function UserEdit() {
 	const [avatarImagePreview, setAvatarImagePreview] = useState(null);
 	const history = useHistory();
 	const uploadInput = useRef(null);
+	const { user } = useParams();
 
 	useEffect(() => {
 		const getUserInfo = async () => {
 			setMyUserId((await authenticate()).id);
 			if (myUserId) {
-				let res = await fetch(`/api/users/${myUserId}`);
+				let res = await fetch(`/api/users/${user}`);
 				res = await res.json();
 				setUsername(res.username);
 				setCurrUsername(res.username);
@@ -37,6 +38,7 @@ export default function UserEdit() {
 	const handleSubmit = async e => {
 		//Handle form submit
 		e.preventDefault();
+		setLoaded(false);
 		const formData = new FormData();
 		formData.append('file', avatarImage);
 		formData.append('username', username);
@@ -80,11 +82,7 @@ export default function UserEdit() {
 				</div>
 			);
 		}
-		return avatarUrl ? (
-			<img id='avatarImage' src={avatarUrl} alt='Avatar' />
-		) : (
-			<img id='avatarImage' src={require('./default-avatar.jpg')} alt='Avatar' />
-		);
+		return <img id='avatarImage' src={avatarUrl} alt='Avatar' />;
 	};
 
 	return (
