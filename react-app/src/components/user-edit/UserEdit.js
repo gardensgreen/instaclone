@@ -80,11 +80,7 @@ export default function UserEdit() {
 				</div>
 			);
 		}
-		return avatarUrl ? (
-			<img id='avatarImage' src={avatarUrl} alt='Avatar' />
-		) : (
-			<img id='avatarImage' src={require('./default-avatar.jpg')} alt='Avatar' />
-		);
+		return <img id='avatarImage' src={avatarUrl} alt='Avatar' />;
 	};
 
 	return (
