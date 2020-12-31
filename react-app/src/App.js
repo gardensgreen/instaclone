@@ -7,6 +7,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import Feed from './components/feed';
 import User from './components/User';
+import UserEdit from './components/user-edit/UserEdit';
 // import UploadUser from "./components/upload-post/UploadPost";
 import { authenticate } from './services/auth';
 import LandingPage from './components/landing-page/LandingPage';
@@ -46,6 +47,9 @@ function App() {
 				</Route>
 				<ProtectedRoute path='/users' exact={true} authenticated={authenticated}>
 					<UsersList />
+				</ProtectedRoute>
+				<ProtectedRoute path='/users/edit' exact={true} authenticated={authenticated}>
+					<UserEdit></UserEdit>
 				</ProtectedRoute>
 				<ProtectedRoute path='/users/:userId' exact={true} authenticated={authenticated}>
 					<User />
