@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -12,13 +12,13 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [userdata, setUserdata] = useState({});
-  
+
   useEffect(() => {
     (async() => {
       const user = await authenticate();
-      setUserdata(user)
       if (!user.errors) {
         setAuthenticated(true);
+        setUserdata(user);
       }
       setLoaded(true);
     })();
@@ -28,29 +28,31 @@ function App() {
     return null;
   }
 
-  
-
   return (
     <BrowserRouter>
-      <Route path="/login" exact={true}>
-        <LoginForm
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-          />
-      </Route>
-      <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      </Route>
-      {authenticated ? <NavBar setAuthenticated={setAuthenticated} userdata={userdata} /> : null}
-      <ProtectedRoute path={`/${userdata.username}`} exact={true} authenticated={authenticated}>
-        <UsersList userdata={userdata}/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User />
-      </ProtectedRoute>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
-      </ProtectedRoute>
+      <Switch>
+        <Route path="/login" exact={true}>
+          <LoginForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+            setUserdata={setUserdata}
+            />
+        </Route>
+        <Route path="/sign-up" exact={true}>
+          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        </Route>
+        <ProtectedRoute path={`/${userdata.username}`} exact={true} authenticated={authenticated}>
+          <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
+          <UsersList userdata={userdata}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+          <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+          <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
+          <h1>My Home Page</h1>
+        </ProtectedRoute>
+      </Switch>
     </BrowserRouter>
   );
 }

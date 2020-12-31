@@ -19,7 +19,8 @@ export const login = async (email, password) => {
       password
     })
   });
-  return await response.json();
+  const res = await response.json();
+  return res;
 }
 
 export const logout = async () => {
@@ -29,7 +30,6 @@ export const logout = async () => {
     }
   });
   const res = await response.json();
-  console.log(res);
   return res;
 };
 
