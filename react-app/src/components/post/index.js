@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {authenticate} from "../../services/auth";
-import {useParams} from "react-router-dom";
+import {useParams, NavLink} from "react-router-dom";
 import RecomendedPost from "./recomenedPost";
 import "./post.css"
 
@@ -83,13 +83,13 @@ const Post = () => {
                 <div className="post-info-holder">
                     <div className="poster-info">
                         <img alt="user avatar" src={users[poster].avatarUrl}/>
-                        <div>{users[poster].username}</div>
+                        <div className="post-user-name"><NavLink to={`/users/${users[poster].username}`}>{users[poster].username}</NavLink></div>
                         {canFollow ? <div onClick={follow} className="post-follow-link">Follow</div> : null}
                     </div>
                     <div className="post-comments-holder">
                         {comments.map(c=><div key={c.id} className="post-comment">
                             <img alt="user avatar" src={users[c.userId].avatarUrl}/>
-                            <div className="post-comment-text"><b>{users[c.userId].username}</b> {c.comment}</div>
+                            <div className="post-comment-text"><NavLink to={users[c.userId].username}><b>{users[c.userId].username}</b></NavLink> {c.comment}</div>
                         </div>)}
                     </div>
                     <div className="post-comment-submit">
