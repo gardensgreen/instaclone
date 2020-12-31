@@ -16,12 +16,16 @@ const Post = () => {
             res = await res.json();
             setUsers(res.users);
             setImg(res.post.photoUrl);
-            setComments(res.post.comments);
+            setComments([{userId:res.post.userId,comment:res.post.description},...res.post.comments]);
             setDescription(res.post.description);
             setPoster(res.post.userId);
             setLoaded(true);
         })()
     }, [postId]);
+
+    const submitComent = (e) => {
+
+    }
 
 
     return loaded && (
@@ -42,8 +46,9 @@ const Post = () => {
                         </div>)}
                     </div>
                     <div className="comment-submit">
-                        <form>
+                        <form onSubmit={submitComent}>
                             <textarea placeholder="New Comment"/>
+                            <input value="Post Comment" type="submit"/>
                         </form>
                     </div>
                 </div>

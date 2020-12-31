@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(10, 10, 10, 0.01);
+}
+
 .post-wraper {
     display: flex;
     flex-direction: column;
@@ -7,7 +11,8 @@
     display: flex;
     width: 80vw;
     height: 80vh;
-    border: 1px solid rgba(10, 10, 10, .1)
+    border: 1px solid rgba(10, 10, 10, .1);
+    background-color: white;
 }
 
 .post-img-holder {
@@ -16,6 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.post-comments-holder {
+    overflow-y: scroll;
+    height: 100%;
 }
 
 .post-holder img{
@@ -43,10 +53,13 @@
     width: 30px;
     height: 30px;
     border-radius: 30px;
+    margin: 3px;
 }
 
 .post-comment {
     display: flex;
+    align-items: center;
+    font-size: small;
 }
 
 .comment-submit {
@@ -56,5 +69,11 @@
 
 .comment-submit textarea {
     width: 100%;
+    border: none;
+}
+
+.comment-submit input {
+    background-color: transparent;
+    color: lightblue;
     border: none;
 }
