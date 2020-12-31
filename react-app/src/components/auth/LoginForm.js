@@ -26,7 +26,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   };
 
   if (authenticated) {
-    console.log("authenticated statement")
+    // console.log("authenticated statement")
     return <Redirect to="/" />;
   }
 

@@ -3,12 +3,14 @@ import { logout } from "../../services/auth";
 
 const LogoutButton = ({setAuthenticated}) => {
   const onLogout = async (e) => {
+    e.preventDefault();
     await logout();
     setAuthenticated(false);
+    window.location.href = "/login"
   };
 
   return (
-    <a onClick={onLogout} className="userDropdown__box__selections" href="/">
+    <a onClick={onLogout} className="userDropdown__box__selections" href="/login">
       <div className="box__selections__option">
         <div id="profileOption" style={{ marginRight: "12px", width: "12px", height: "12px", top: "3px" }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-lock" viewBox="0 0 16 16">

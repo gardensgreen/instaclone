@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
 // import { NavLink } from "react-router-dom";
 
-function UsersList() {
-  const [users, setUsers] = useState([]);
+function UsersList(props) {
+  const [user, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/api/users/");
+      const response = await fetch(`/api/users/${props.userdata.id}`);
       const responseData = await response.json();
-      setUsers(responseData.users);
+      setUsers(responseData);
     }
     fetchData();
   }, []);
 
-  // const userComponents = users.map((user) => {
-  //   return (
-  //     <li key={user.id}>
-  //       <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-  //     </li>
-  //   );
-  // });
   let clickedFollowersButton = false;
   const clickedFollowers = (e) => {
     e.preventDefault();
@@ -48,13 +41,13 @@ function UsersList() {
           <div style={{ width: "291px", height: "194px", marginRight: "30px" }}>
             <div style={{ width: "150px", height: "150px", cursor: "pointer", alignItems: "center", display: "block", justifyContent: "center" }}>
               <span className="header__div__profilePicture">
-                Profil-Pic
+                <img style={{ left: "0", position: "absolute", top: "0", width: "150px", height: "150px" }} src={user.avatarUrl} alt="profile-picture" />
               </span>
             </div>
           </div>
           <section style={{ width: "613px", height: "194px" }}>
             <div style={{ marginBotton: "20px" }}>
-              <h2 className="section__div__userName">Demo</h2>
+              <h2 className="section__div__userName">{user.username}</h2>
             </div>
             <ul style={{ marginBottom: "20px", display: "flex", flexDirection: "row", listStyle: "none", paddingLeft: "0px" }}>
               <li style={{ marginLeft: "0px", marginRight: "40px", fontSize: "16px", display: "list-item" }}>
@@ -76,7 +69,7 @@ function UsersList() {
                 </a>
               </li>
             </ul>
-            <div className="section__div__bio"><p>This is bio test!</p></div>
+            <div className="section__div__bio"><p>{user.bio}</p></div>
           </section>
         </header>
         <div className="main__div__posts">

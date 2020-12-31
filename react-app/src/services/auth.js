@@ -4,7 +4,8 @@ export const authenticate = async() => {
       'Content-Type': 'application/json'
     }
   });
-  return await response.json();
+  const res = await response.json();
+  return res;
 }
 
 export const login = async (email, password) => {
@@ -27,7 +28,9 @@ export const logout = async () => {
       "Content-Type": "application/json",
     }
   });
-  return await response.json();
+  const res = await response.json();
+  console.log(res);
+  return res;
 };
 
 

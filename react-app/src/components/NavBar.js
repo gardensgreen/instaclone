@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ setAuthenticated, userdata }) => {
   const history = useHistory();
   let clickedOnUser = false;
   let searchFocus = false;
@@ -53,7 +53,7 @@ const NavBar = ({ setAuthenticated }) => {
     userDropdown.style.display = "none";
     clickableEle.style.display = "none";
     clickedOnUser = false;
-    history.push("/users");
+    history.push(`/${userdata.username}`);
   }
   const settingsButton = (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const NavBar = ({ setAuthenticated }) => {
     userDropdown.style.display = "none";
     clickableEle.style.display = "none";
     clickedOnUser = false;
-    history.push("/users/edit")
+    history.push(`${userdata.username}/edit`)
   }
 
   return (
@@ -104,13 +104,15 @@ const NavBar = ({ setAuthenticated }) => {
               </div>
               <div style={{ width: "30px", height: "30px" }}>
                 <div className="div2__center__pic"></div>
-                <span onClick={clickedUser} className="div2__center__span">Demo</span>
+                <span onClick={clickedUser} className="div2__center__span">
+                  <img style={{ width: "22px", height: "22px" }} src={userdata.avatarUrl} alt="nav-pic" />
+                </span>
                 <div style={{ marginLeft: "-180px", top: "15px", position: "relative" }}>
                   <div onClick={clickedUser} className="clickable-element" style={{ display: "none", bottom: "0", left: "0", position: "fixed", right: "0", top: "0", zIndex: "2", background: "transparent" }}></div>
                   <div className="center__span__userDropdown" style={{ display: "none", transformOrigin: "top center", opacity: "1", background: "rgba(var(--d87,255,255,255),1)", borderRadious: "6px", boxShadow: "0 0 5px 1px rgba(var(--jb7,0,0,0),.0975)", position: "absolute", zIndex: "3", left: "24px" }} aria-hidden="false">
                     <div className="span__userDropdown__topPointer"></div>
                     <div className="span__userDropdown__box">
-                      <a onClick={profileButton} className="userDropdown__box__selections" href="/demo">
+                      <a onClick={profileButton} className="userDropdown__box__selections" href={`/${userdata.username}`}>
                         <div className="box__selections__option">
                           <div id="profileOption" style={{ marginRight: "12px", width: "12px", height: "12px", top: "3px" }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
@@ -120,7 +122,7 @@ const NavBar = ({ setAuthenticated }) => {
                           <div>Profile</div>
                         </div>
                       </a>
-                      <a onClick={settingsButton} className="userDropdown__box__selections" href="/demo/edit">
+                      <a onClick={settingsButton} className="userDropdown__box__selections" href={`/${userdata.username}/edit`}>
                         <div className="box__selections__option">
                           <div id="profileOption" style={{ marginRight: "12px", width: "12px", height: "12px", top: "3px" }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-gear-wide" viewBox="0 0 16 16">
