@@ -104,3 +104,11 @@ body {
 .comment-submit:hover {
     cursor: pointer;
 }
+
+.see-more-comments {
+    text-decoration: none;
+}
+
+.post-comment {
+    margin-bottom: 4px;
+}

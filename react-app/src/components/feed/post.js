@@ -17,12 +17,19 @@ const Post = ({ post, user, users, myUserId }) => {
         ) : (
             <>
                 <div className="post-comment">
-                    <b>{users[comments[0].userId].username}</b>{" "}
-                    {comments[0].comment}
+                    <NavLink
+                        className="see-more-comments"
+                        to={`/posts/${post.id}`}
+                    >
+                        {`See ${comments.length - 1} more comments`}{" "}
+                    </NavLink>
                 </div>
-                <NavLink to={`/posts/${post.id}`}>{`...See ${
-                    comments.length - 2
-                } more comments...`}</NavLink>
+                <div className-="post-comment">
+                    <b>
+                        {users[comments[comments.length - 2].userId].username}
+                    </b>{" "}
+                    {comments[comments.length - 2].comment}
+                </div>
                 <div className="post-comment">
                     <b>
                         {users[comments[comments.length - 1].userId].username}
