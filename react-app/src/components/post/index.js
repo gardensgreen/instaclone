@@ -89,7 +89,7 @@ const Post = () => {
                     <div className="post-comments-holder">
                         {comments.map(c=><div key={c.id} className="post-comment">
                             <img alt="user avatar" src={users[c.userId].avatarUrl}/>
-                            <div className="post-comment-text"><NavLink to={users[c.userId].username}><b>{users[c.userId].username}</b></NavLink> {c.comment}</div>
+                            <div className="post-comment-text"><NavLink to={`/users/${users[c.userId].username}`}><b>{users[c.userId].username}</b></NavLink> {c.comment}</div>
                         </div>)}
                     </div>
                     <div className="post-comment-submit">

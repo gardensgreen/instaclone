@@ -50,7 +50,7 @@ function App() {
         <Route path='/landing' exact={true}>
           <LandingPage authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
-        <ProtectedRoute path={`/user/:username`} exact={true} authenticated={authenticated}>
+        <ProtectedRoute path={`/users/:username`} exact={true} authenticated={authenticated}>
           <NavBar setAuthenticated={setAuthenticated} userdata={userdata} />
           <Profile userdata={userdata}/>
         </ProtectedRoute>
