@@ -11,7 +11,7 @@ const Post = () => {
     const [users, setUsers] = useState({});
     const [poster, setPoster] = useState(0);
     const [newComent, setNewComment] = useState("");
-    useEffect(()=>{
+    useEffect(() =>{
         (async () => {
             let res = await fetch(`/api/posts/${postId}`);
             res = await res.json();
@@ -24,8 +24,17 @@ const Post = () => {
         })()
     }, [postId]);
 
-    const submitComent = (e) => {
-
+    const submitComent = async (e) => {
+        e.preventDefault();
+        if (newComent.length === 0) return;
+        let res = await fetch(`/api/posts/${postId}/comments`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ comment:newComent }),
+        });
+        res = await res.json();
+        setComments([{userId:res.userId,comment:res.description},...res.comments]);
+        setNewComment("");
     }
 
 
@@ -43,7 +52,7 @@ const Post = () => {
                     <div className="post-comments-holder">
                         {comments.map(c=><div key={c.id} className="post-comment">
                             <img alt="user avatar" src={users[c.userId].avatarUrl}/>
-                            <div><b>{users[c.userId].username}</b> {c.comment}</div>
+                            <div className="post-comment-text"><b>{users[c.userId].username}</b> {c.comment}</div>
                         </div>)}
                     </div>
                     <div className="comment-submit">

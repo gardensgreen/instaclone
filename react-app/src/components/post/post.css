@@ -24,9 +24,10 @@ body {
 }
 
 .post-comments-holder {
-    overflow-y: scroll;
+    overflow: auto;
     height: 100%;
 }
+
 
 .post-holder img{
     max-width: 100%;
@@ -60,6 +61,14 @@ body {
     display: flex;
     align-items: center;
     font-size: small;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.post-comment-text {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
 }
 
 .comment-submit {
@@ -74,6 +83,7 @@ body {
 
 .comment-submit input {
     background-color: transparent;
-    color: lightblue;
+    color: blue;
     border: none;
+    cursor: pointer;
 }
