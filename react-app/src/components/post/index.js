@@ -40,8 +40,10 @@ const Post = () => {
                             <img alt="user avatar" src={users[c.userId].avatarUrl}/>
                             <div><b>{users[c.userId].username}</b> {c.comment}</div>
                         </div>)}
+                    </div>
+                    <div className="comment-submit">
                         <form>
-                            <textarea/>
+                            <textarea placeholder="New Comment"/>
                         </form>
                     </div>
                 </div>
