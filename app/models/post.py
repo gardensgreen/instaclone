@@ -18,6 +18,14 @@ class Post(db.Model):
     likingUsers = relationship("User", secondary=Like, back_populates="likedPosts")
     # primaryjoin=id==Like.c.postId, secondaryjoin=id==Like.c.userId
 
+    def to_simple_dict(self):
+        return {
+            "id": self.id,
+            "photoUrl": self.photoUrl,
+            "numLikes": len(self.likingUsers),
+            "numComments": len(self.comments)
+        }
+
     def to_dict(self):
         return {
             "id": self.id,

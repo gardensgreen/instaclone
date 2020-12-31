@@ -55,14 +55,14 @@ body {
 .one-post-holder {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 50%;
     outline: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: white;
 }
 
-.post-img-holder {
+.feed-post-img-holder {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,9 +90,9 @@ body {
     margin-right: 10px;
 }
 
-.post-img-holder img {
+.feed-post-img-holder img {
     max-width: 100%;
-    max-height: 40vh;
+    max-height: 80vh;
 }
 
 .comment-submit {
@@ -109,6 +109,6 @@ body {
     text-decoration: none;
 }
 
-.post-comment {
+.feed-post-comment {
     margin-bottom: 4px;
 }

@@ -8,6 +8,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from ..models.db import db
+from random import randrange
 # from app.models import Post
 
 post_routes = Blueprint('posts', __name__)
@@ -68,7 +69,44 @@ def create_post():
 @post_routes.route('/<int:id>', methods=['GET'])
 def read_post(id):
     post = Post.query.get(id)
-    return jsonify(post.to_dict())
+    users = {}
+    for comment in post.comments:
+        if comment.userId not in users:
+            users[comment.userId] = comment.user.to_simple_dict()
+    if post.userId not in users:
+        users[post.userId] = post.user.to_simple_dict()
+    if current_user.id not in users:
+        users[current_user.id] = current_user.to_simple_dict()
+    recomended = getRecomendedPosts(post.id, post)
+    return jsonify({'post':post.to_dict(), 'users':users, "recomended":recomended})
+
+def getRecomendedPosts(id, p=None):
+    post = p or Post.query.get(id)
+    recomended = {}
+    userPosts = post.user.posts
+    while len(recomended) < min(len(userPosts)-1, 6):
+        rand = randrange(0, len(userPosts))
+        randPost = userPosts[rand]
+        if randPost.id == post.id:
+            continue
+        if randPost.id in recomended:
+            continue
+        recomended[randPost.id] = randPost.to_simple_dict()
+    if len(recomended) < 6:
+        allPosts = Post.query.all()
+    while len(recomended) < min(6, len(allPosts)-1):
+        rand = randrange(0, len(allPosts))
+        randPost = allPosts[rand]
+        if randPost.id == post.id:
+            continue
+        if randPost.id not in recomended:
+            recomended[randPost.id] = randPost.to_simple_dict()
+    return list(recomended.values())
+
+
+
+
+
 
 # Read Posts (Post Feed)
 @post_routes.route('/', methods=['GET'])

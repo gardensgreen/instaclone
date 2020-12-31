@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import Feed from './components/feed';
+import Post from "./components/post"
 import User from './components/User';
 import UserEdit from './components/user-edit/UserEdit';
 // import UploadUser from "./components/upload-post/UploadPost";
@@ -62,7 +63,8 @@ function App() {
 					<PostForm></PostForm>
 				</ProtectedRoute>
 				<ProtectedRoute path='/posts/:postId' exact={true} authenticated={authenticated}>
-					<CommentForm postId={1}></CommentForm>
+					{/* <CommentForm postId={1}></CommentForm> */}
+                    <Post/>
 				</ProtectedRoute>
 			</Switch>
 		</BrowserRouter>
