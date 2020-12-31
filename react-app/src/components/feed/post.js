@@ -10,13 +10,13 @@ const Post = ({ post, user, users, myUserId }) => {
     const genCommentsJSX = () => {
         return comments.length <= 3 ? (
             comments.map((c) => (
-                <div key={`${post.id}-${c.id}`} className="post-comment">
+                <div key={`${post.id}-${c.id}`} className="feed-post-comment">
                     <b>{users[c.userId].username}</b> {c.comment}
                 </div>
             ))
         ) : (
             <>
-                <div className="post-comment">
+                <div className="feed-post-comment">
                     <NavLink
                         className="see-more-comments"
                         to={`/posts/${post.id}`}
@@ -24,13 +24,13 @@ const Post = ({ post, user, users, myUserId }) => {
                         {`See ${comments.length - 1} more comments`}{" "}
                     </NavLink>
                 </div>
-                <div className-="post-comment">
+                <div className-="feed-post-comment">
                     <b>
                         {users[comments[comments.length - 2].userId].username}
                     </b>
                     {" "+comments[comments.length - 2].comment}
                 </div>
-                <div className="post-comment">
+                <div className="feed-post-comment">
                     <b>
                         {users[comments[comments.length - 1].userId].username}
                     </b>
