@@ -67,7 +67,7 @@ export default function LandingPage({ authenticated }) {
 					</div>
 				</div>
 				<div className='footer__container'>
-					<a href='https://linkedin.com' className='footer-link'>
+					<a href='https://linkedin.com/in/chris-resnick' className='footer-link'>
 						Chris Resnick
 					</a>
 					<a href='https://www.linkedin.com/in/ezra-pinsky-1b321189/' className='footer-link'>

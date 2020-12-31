@@ -15,6 +15,11 @@ body {
     background-color: white;
 }
 
+.post-likes {
+    color: black;
+    font-size: small;
+}
+
 .post-img-holder {
     height: 100%;
     width: 75%;
@@ -71,19 +76,32 @@ body {
     overflow-x: hidden;
 }
 
-.comment-submit {
+.post-comment-submit {
     margin-top: auto;
     border-top: 1px solid rgba(10, 10, 10, .1);
 }
 
-.comment-submit textarea {
+.post-comment-submit textarea {
     width: 100%;
     border: none;
 }
 
-.comment-submit input {
+.post-comment-submit input {
     background-color: transparent;
     color: blue;
     border: none;
     cursor: pointer;
+}
+
+.post-comment-submit .far {
+    color: black;
+}
+
+.post-comment-submit i {
+    cursor: pointer;
+    margin: 3px;
+}
+
+.post-comment-submit .fas {
+    color: red;
 }

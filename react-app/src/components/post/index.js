@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {authenticate} from "../../services/auth"
 import {useParams} from "react-router-dom"
 import "./post.css"
 
@@ -11,6 +12,9 @@ const Post = () => {
     const [users, setUsers] = useState({});
     const [poster, setPoster] = useState(0);
     const [newComent, setNewComment] = useState("");
+    const [likeUsers, setLikeUsers] = useState([]);
+    const [numLikes, setNumLikes] = useState(0);
+    const [myUserId, setMyUserId] = useState(null)
     useEffect(() =>{
         (async () => {
             let res = await fetch(`/api/posts/${postId}`);
@@ -21,6 +25,9 @@ const Post = () => {
             setDescription(res.post.description);
             setPoster(res.post.userId);
             setLoaded(true);
+            setLikeUsers(res.post.likers);
+            setNumLikes(res.post.numLikes)
+            setMyUserId((await authenticate()).id)
         })()
     }, [postId]);
 
@@ -36,6 +43,16 @@ const Post = () => {
         setComments([{userId:res.userId,comment:res.description},...res.comments]);
         setNewComment("");
     }
+
+    const like = async (e) => {
+        e.preventDefault();
+        let res = await fetch(`/api/posts/${postId}/likes`, {
+            method: "POST",
+        });
+        res = await res.json();
+        setNumLikes(res.numLikes);
+        setLikeUsers(res.likers);
+    };
 
 
     return loaded && (
@@ -55,7 +72,11 @@ const Post = () => {
                             <div className="post-comment-text"><b>{users[c.userId].username}</b> {c.comment}</div>
                         </div>)}
                     </div>
-                    <div className="comment-submit">
+                    <div className="post-comment-submit">
+                        <i onClick={like} className={likeUsers.includes(myUserId) ? "fas fa-heart fa-lg": "far fa-heart fa-lg"}></i>
+                        <div className="post-likes">
+                            {numLikes} {numLikes !== 1 ? "likes" : "like"}{" "}
+                        </div>
                         <form onSubmit={submitComent}>
                             <textarea value={newComent} onChange={e => setNewComment(e.target.value)} placeholder="New Comment"/>
                             <input value="Post Comment" type="submit"/>

@@ -17,8 +17,7 @@ const Post = ({ post, user, users, myUserId }) => {
         ) : (
             <>
                 <div className="post-comment">
-                    <b>{users[comments[0].userId].username}</b>{" "}
-                    {comments[0].comment}
+                    <b>{users[comments[0].userId].username}</b> {" "+comments[0].comment}
                 </div>
                 <NavLink to={`/posts/${post.id}`}>{`...See ${
                     comments.length - 2
@@ -26,8 +25,7 @@ const Post = ({ post, user, users, myUserId }) => {
                 <div className="post-comment">
                     <b>
                         {users[comments[comments.length - 1].userId].username}
-                    </b>{" "}
-                    {comments[comments.length - 1].comment}
+                    </b> {" "+comments[comments.length - 1].comment}
                 </div>
             </>
         );
