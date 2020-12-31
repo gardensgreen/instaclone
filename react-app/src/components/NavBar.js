@@ -48,10 +48,20 @@ const NavBar = ({ setAuthenticated }) => {
   }
   const profileButton = (e) => {
     e.preventDefault();
+    const clickableEle = window.document.querySelector(".clickable-element");
+    const userDropdown = window.document.querySelector(".center__span__userDropdown");
+    userDropdown.style.display = "none";
+    clickableEle.style.display = "none";
+    clickedOnUser = false;
     history.push("/users");
   }
   const settingsButton = (e) => {
     e.preventDefault();
+    const clickableEle = window.document.querySelector(".clickable-element");
+    const userDropdown = window.document.querySelector(".center__span__userDropdown");
+    userDropdown.style.display = "none";
+    clickableEle.style.display = "none";
+    clickedOnUser = false;
     history.push("/users/edit")
   }
 
