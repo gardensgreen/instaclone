@@ -93,6 +93,7 @@ body {
 .feed-post-img-holder img {
     max-width: 100%;
     max-height: 80vh;
+    cursor: pointer;
 }
 
 .comment-submit {
@@ -111,4 +112,9 @@ body {
 
 .feed-post-comment {
     margin-bottom: 4px;
+}
+
+.post-author-name a, .feed-post-comment a, .post-text a {
+    color: black;
+    text-decoration: none;
 }
