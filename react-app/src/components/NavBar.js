@@ -69,18 +69,18 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 			<div className='nav__div1'>
 				<div className='nav__div2'>
 					<div className='nav__div2__left'>
-						<NavLink to='/' style={{ textDecoration: 'none', color: 'black', width: '100px' }}>
-							<span
-								style={{
-									marginTop: '-6px',
-									fontFamily: 'BillabongW00-Regular',
-									fontSize: '40px',
-									height: '54px',
-								}}
-							>
-								Instagram
-							</span>
-						</NavLink>
+						<span
+							onClick={e => history.push('/')}
+							style={{
+								marginTop: '-6px',
+								fontFamily: 'BillabongW00-Regular',
+								fontSize: '35px',
+								height: '54px',
+								cursor: 'pointer',
+							}}
+						>
+							Instagram
+						</span>
 					</div>
 					<div className='nav__div2__center'>
 						<input
