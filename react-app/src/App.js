@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -18,10 +18,13 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [userdata, setUserdata] = useState({});
+  // const [userprofile, setuserprofile] = useState(false);
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
+      // const { username } = useParams();
+      // console.log("This is the user: " + username)
       if (!user.errors) {
         setAuthenticated(true);
         setUserdata(user);

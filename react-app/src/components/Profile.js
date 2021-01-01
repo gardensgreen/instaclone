@@ -48,8 +48,11 @@ function Profile(props) {
             </div>
           </div>
           <section style={{ width: "613px", height: "194px" }}>
-            <div style={{ marginBotton: "20px" }}>
+            <div style={{ marginBotton: "20px", display: "flex", flexDirection: "row" }}>
               <h2 className="section__div__userName">{user.username}</h2>
+              <div style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
+                <button className="follow-button">Follow</button>
+              </div>
             </div>
             <ul style={{ marginBottom: "20px", display: "flex", flexDirection: "row", listStyle: "none", paddingLeft: "0px" }}>
               <li style={{ marginLeft: "0px", marginRight: "40px", fontSize: "16px", display: "list-item" }}>
