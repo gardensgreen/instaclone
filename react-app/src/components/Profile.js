@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import RecomendedPost from './post/recomenedPost';
+import NumFollowers from './NumFollowers';
+import NumFollowing from './NumFollowing';
 
 function Profile(props) {
   const [user, setUsers] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [loggedin, setLoggedin] = useState([]);
+  const [followingToFollow, setFollowingToFollow] = useState(false);
+  const [followToFollowing, setFollowToFollowing] = useState(false);
+  const [notFollowing, setNotFollowing] = useState(true);
   const { username } = useParams();
   const userName = localStorage.getItem("IG_USERNAME");
   const following = loggedin.followingUserNames;
@@ -41,18 +46,24 @@ function Profile(props) {
   //     return;
   //   }
   // }
-  let followingToFollow = false;
-  let followToFollowing = false;
+  
   const overFollowing = () => {
-    if (followingToFollow === false && followToFollowing === false) {
-      const followingButton = window.document.querySelector(".following-button");
-      followingButton.innerHTML = "Unfollow";
+    const followButton = window.document.querySelector(".follow-button");
+
+    if (followButton === null) {
+      if (followingToFollow === false && followToFollowing === false || notFollowing === false) {
+        const followingButton = window.document.querySelector(".following-button");
+        followingButton.innerHTML = "Unfollow";
+      }
     }
   }
   const leftFollowing = () => {
-    if (followingToFollow === false && followToFollowing === false) {
-      const followingButton = window.document.querySelector(".following-button");
-      followingButton.innerHTML = "Following";
+    const followButton = window.document.querySelector(".follow-button")
+    if (followButton === null) {
+      if (followingToFollow === false && followToFollowing === false || notFollowing === false) {
+        const followingButton = window.document.querySelector(".following-button");
+        followingButton.innerHTML = "Following";
+      }
     }
   }
   const follow = async () => {
@@ -60,9 +71,9 @@ function Profile(props) {
     const followingButton = window.document.querySelector(".following-button");
 
     if (followButton === null) {
-      if (followingButton.innerHTML === "Following") {
+      if (followingButton.innerHTML === "Following" || followingButton.innerHTML === "Unfollow") {
         unFollow();
-        followingToFollow = false;
+        setFollowingToFollow(false);
         return;
       }
     }
@@ -70,8 +81,9 @@ function Profile(props) {
       followButton.classList.remove("follow-button");
       followButton.classList.add("following-button");
       followButton.innerHTML = "Following";
-      followToFollowing = true;
-      const res = await fetch(`/api/users/${user.id}/follower`, {
+      setFollowToFollowing(true);
+      setNotFollowing(false);
+      await fetch(`/api/users/${user.id}/follower`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -80,8 +92,9 @@ function Profile(props) {
           followerId: loggedin.id
         })
       });
-      const response = await res.json();
-      console.log(response);
+      const response = await fetch(`/api/users/${username}`);
+      const result = await response.json();
+      setUsers(result);
       return;
     }
   }
@@ -92,8 +105,8 @@ function Profile(props) {
     if (followingButton === null) {
       if (followButton.innerHTML === "Follow") {
         follow();
-        followToFollowing = false;
-        followingToFollow = false;
+        setFollowToFollowing(false);
+        setFollowingToFollow(false);
         return;
       }
     }
@@ -101,8 +114,8 @@ function Profile(props) {
       followingButton.classList.remove("following-button");
       followingButton.classList.add("follow-button");
       followingButton.innerHTML = "Follow";
-      followingToFollow = true;
-      const res = await fetch(`/api/users/${user.id}/follower`, {
+      setFollowingToFollow(true);
+      await fetch(`/api/users/${user.id}/follower`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -111,8 +124,9 @@ function Profile(props) {
           followerId: loggedin.id
         })
       });
-      const response = await res.json();
-      console.log(response)
+      const response = await fetch(`/api/users/${username}`);
+      const result = await response.json();
+      setUsers(result);
       return;
     }
   }
@@ -132,7 +146,7 @@ function Profile(props) {
             <div style={{ marginBotton: "20px", display: "flex", flexDirection: "row" }}>
               <h2 className="section__div__userName">{user.username}</h2>
               {username !== userName && following.includes(`${username}`) === false ? <div className="section__div__followButton" style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
-                <button onClick={follow} className="follow-button">Follow</button>
+                <button onMouseEnter={overFollowing} onMouseLeave={leftFollowing} onClick={follow} className="follow-button">Follow</button>
               </div> : username !== userName ? <div className="section__div__followButton" style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
                   <button onMouseEnter={overFollowing} onMouseLeave={leftFollowing} onClick={unFollow} className="following-button">Following</button>
                 </div> : <></> }
@@ -146,13 +160,13 @@ function Profile(props) {
               </li>
               <li style={{ marginRight: "40px", fontSize: "16px" }}>
                 <span style={{ color: "inherit" }} tabIndex="0">
-                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }} title="600">{user.numFollowers} </span>
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }} title="600"><NumFollowers followers={user.numFollowers} /> </span>
                   followers
                 </span>
               </li>
               <li style={{ marginRight: "0", fontSize: "16px" }}>
                 <span style={{ color: "inherit" }} tabIndex="0">
-                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}>{user.numFollowing} </span>
+                  <span style={{ color: "rgba(var(--i1d,38,38,38),1)", fontWeight: "600" }}><NumFollowing following={user.numFollowing} /> </span>
                   following
                 </span>
               </li>

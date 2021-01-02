@@ -111,14 +111,7 @@ def deleteFollower(id):
     # DELETE /api/users/(id of person to follow)/follower
     # BODY JSON {followerId: (id of follower to REMOVE)}
     followerId = request.json["followerId"]
-    currentUser = current_user.get_id()
-    print("followerId", followerId)
-    print("current user", currentUser)
-    print("id", id)
-    print("test truth statement", followerId == currentUser)
-    print("truth statement", current_user.get_id() == followerId)
-    if current_user.get_id() != followerId:
-        print("inside of if statement")
+    if current_user.id != followerId:
         return jsonify({"error": "Not authorized"})
     # if current_user.get_id() != followerId and current_user.get_id() != id:
     #     return jsonify({"error": "Not authorized"})
