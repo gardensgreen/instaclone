@@ -338,3 +338,20 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.following-button {
+    width: 123px;
+    height: 30px;
+    padding: 0 24px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    color: rgba(var(--f75,38,38,38),1);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 26px;
+    outline: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

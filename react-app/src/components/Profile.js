@@ -5,14 +5,20 @@ import RecomendedPost from './post/recomenedPost';
 function Profile(props) {
   const [user, setUsers] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [loggedin, setLoggedin] = useState([]);
   const { username } = useParams();
+  const userName = localStorage.getItem("IG_USERNAME");
+  const following = loggedin.followingUserNames;
 
   useEffect(() => {
     setLoaded(false);
     async function fetchData() {
       const response = await fetch(`/api/users/${username}`);
+      const loggedInUser = await fetch(`/api/users/${userName}`);
       const responseData = await response.json();
+      const resData = await loggedInUser.json();
       setUsers(responseData);
+      setLoggedin(resData);
       setLoaded(true);
     }
     fetchData();
@@ -35,6 +41,81 @@ function Profile(props) {
   //     return;
   //   }
   // }
+  let followingToFollow = false;
+  let followToFollowing = false;
+  const overFollowing = () => {
+    if (followingToFollow === false && followToFollowing === false) {
+      const followingButton = window.document.querySelector(".following-button");
+      followingButton.innerHTML = "Unfollow";
+    }
+  }
+  const leftFollowing = () => {
+    if (followingToFollow === false && followToFollowing === false) {
+      const followingButton = window.document.querySelector(".following-button");
+      followingButton.innerHTML = "Following";
+    }
+  }
+  const follow = async () => {
+    const followButton = window.document.querySelector(".follow-button");
+    const followingButton = window.document.querySelector(".following-button");
+
+    if (followButton === null) {
+      if (followingButton.innerHTML === "Following") {
+        unFollow();
+        followingToFollow = false;
+        return;
+      }
+    }
+    if (followButton.innerHTML === "Follow") {
+      followButton.classList.remove("follow-button");
+      followButton.classList.add("following-button");
+      followButton.innerHTML = "Following";
+      followToFollowing = true;
+      const res = await fetch(`/api/users/${user.id}/follower`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          followerId: loggedin.id
+        })
+      });
+      const response = await res.json();
+      console.log(response);
+      return;
+    }
+  }
+  const unFollow = async () => {
+    const followingButton = window.document.querySelector(".following-button");
+    const followButton = window.document.querySelector(".follow-button");
+
+    if (followingButton === null) {
+      if (followButton.innerHTML === "Follow") {
+        follow();
+        followToFollowing = false;
+        followingToFollow = false;
+        return;
+      }
+    }
+    if (followingButton.innerHTML === "Unfollow" || followingButton.innerHTML === "Following") {
+      followingButton.classList.remove("following-button");
+      followingButton.classList.add("follow-button");
+      followingButton.innerHTML = "Follow";
+      followingToFollow = true;
+      const res = await fetch(`/api/users/${user.id}/follower`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          followerId: loggedin.id
+        })
+      });
+      const response = await res.json();
+      console.log(response)
+      return;
+    }
+  }
 
   return loaded && (
     <main className="main__backgroundColor">
@@ -50,9 +131,11 @@ function Profile(props) {
           <section style={{ width: "613px", height: "194px" }}>
             <div style={{ marginBotton: "20px", display: "flex", flexDirection: "row" }}>
               <h2 className="section__div__userName">{user.username}</h2>
-              <div style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
-                <button className="follow-button">Follow</button>
-              </div>
+              {username !== userName && following.includes(`${username}`) === false ? <div className="section__div__followButton" style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
+                <button onClick={follow} className="follow-button">Follow</button>
+              </div> : username !== userName ? <div className="section__div__followButton" style={{ width: "93px", height: "30px", marginLeft: "25px" }}>
+                  <button onMouseEnter={overFollowing} onMouseLeave={leftFollowing} onClick={unFollow} className="following-button">Following</button>
+                </div> : <></> }
             </div>
             <ul style={{ marginBottom: "20px", display: "flex", flexDirection: "row", listStyle: "none", paddingLeft: "0px" }}>
               <li style={{ marginLeft: "0px", marginRight: "40px", fontSize: "16px", display: "list-item" }}>
@@ -98,7 +181,7 @@ function Profile(props) {
         <div className="div__posts__images">
           <article className="posts__images__article">
             <div style={{ marginTop: "2vh" }} className="recomended-post-holder">
-              {user.posts.map(p => <RecomendedPost rec={p}/>)}
+              {user.posts.map(p => <RecomendedPost key={p.id} rec={p}/>)}
             </div>
           </article>
         </div>

@@ -53,7 +53,8 @@ def users():
 @login_required
 def userParam(username):
     user = User.query.filter_by(username = username).first()
-    return user.to_profile_dict()
+    userProfile = user.to_profile_dict()
+    return userProfile
 
 
 @user_routes.route('/<int:id>', methods=['PATCH'])
@@ -110,8 +111,17 @@ def deleteFollower(id):
     # DELETE /api/users/(id of person to follow)/follower
     # BODY JSON {followerId: (id of follower to REMOVE)}
     followerId = request.json["followerId"]
-    if current_user.get_id() != followerId and current_user.get_id() != id:
+    currentUser = current_user.get_id()
+    print("followerId", followerId)
+    print("current user", currentUser)
+    print("id", id)
+    print("test truth statement", followerId == currentUser)
+    print("truth statement", current_user.get_id() == followerId)
+    if current_user.get_id() != followerId:
+        print("inside of if statement")
         return jsonify({"error": "Not authorized"})
+    # if current_user.get_id() != followerId and current_user.get_id() != id:
+    #     return jsonify({"error": "Not authorized"})
     follower = User.query.get(followerId)
     user = User.query.get(id)
     user.followers.remove(follower)
