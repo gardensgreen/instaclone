@@ -38,6 +38,7 @@ export default function UserEdit() {
 	const handleSubmit = async e => {
 		//Handle form submit
 		e.preventDefault();
+		setLoaded(false);
 		const formData = new FormData();
 		formData.append('file', avatarImage);
 		formData.append('username', username);
@@ -81,11 +82,7 @@ export default function UserEdit() {
 				</div>
 			);
 		}
-		return avatarUrl ? (
-			<img id='avatarImage' src={avatarUrl} alt='Avatar' />
-		) : (
-			<img id='avatarImage' src={require('./default-avatar.jpg')} alt='Avatar' />
-		);
+		return <img id='avatarImage' src={avatarUrl} alt='Avatar' />;
 	};
 
 	return (

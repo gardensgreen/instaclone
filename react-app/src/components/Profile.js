@@ -25,9 +25,8 @@ function Profile(props) {
       setUsers(responseData);
       setLoggedin(resData);
       setLoaded(true);
+
     }
-    fetchData();
-  }, []);
 
   // let clickedFollowersButton = false;
   // const clickedFollowers = (e) => {
@@ -202,6 +201,7 @@ function Profile(props) {
       </div>
     </main>
   );
+
 }
 
 export default Profile;

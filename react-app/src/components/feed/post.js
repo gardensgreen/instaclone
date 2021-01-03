@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+
 
 const Post = ({ post, user, users, myUserId }) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(post.comments);
     const [numLikes, setNumLikes] = useState(post.numLikes);
     const [likeUsers, setLikeUsers] = useState(post.likers);
-
+    const history = useHistory();
     const genCommentsJSX = () => {
         return comments.length <= 3 ? (
             comments.map((c) => (
                 <div key={`${post.id}-${c.id}`} className="feed-post-comment">
-                    <b>{users[c.userId].username}</b> {c.comment}
+                    <NavLink to={`users/${users[c.userId].username}`}><b>{users[c.userId].username}</b></NavLink> {c.comment}
                 </div>
             ))
         ) : (
             <>
-                <div className="feed-post-comment">
+                <div className="feed-post-link">
                     <NavLink
                         className="see-more-comments"
                         to={`/posts/${post.id}`}
@@ -24,16 +25,20 @@ const Post = ({ post, user, users, myUserId }) => {
                         {`See ${comments.length - 1} more comments`}{" "}
                     </NavLink>
                 </div>
-                <div className-="feed-post-comment">
+                <div className="feed-post-comment">
+                    <NavLink to={`/users/${users[comments[comments.length - 2].userId].username}`}>
                     <b>
                         {users[comments[comments.length - 2].userId].username}
                     </b>
+                    </NavLink>
                     {" "+comments[comments.length - 2].comment}
                 </div>
                 <div className="feed-post-comment">
+                    <NavLink to={`/users/${users[comments[comments.length - 1].userId].username}`}>
                     <b>
                         {users[comments[comments.length - 1].userId].username}
                     </b>
+                    </NavLink>
                     {" "+comments[comments.length - 1].comment}
                 </div>
             </>
@@ -69,10 +74,10 @@ const Post = ({ post, user, users, myUserId }) => {
                     alt={`profile pic of ${user.username}`}
                     className="post-profile-pic"
                 />
-                <div className="post-author-name">{user.username}</div>
+                <div className="post-author-name"><NavLink to={`/users/${user.username}`}>{user.username}</NavLink></div>
             </div>
             <div className="feed-post-img-holder">
-                <img alt={post.description} src={post.photoUrl} />
+                <img alt={post.description} src={post.photoUrl} onClick={e => history.push(`/posts/${post.id}`)}/>
             </div>
             <div className="post-bottom-info-holder">
                 <i
@@ -87,7 +92,7 @@ const Post = ({ post, user, users, myUserId }) => {
                     {numLikes} {numLikes !== 1 ? "likes" : "like"}{" "}
                 </div>
                 <div className="post-text">
-                    <b>{user.username}</b> {post.description}
+                    <NavLink to={`/users/${user.username}`}><b>{user.username}</b></NavLink> {post.description}
                 </div>
                 <div className="post-comment-holder">{genCommentsJSX()}</div>
                 <form className="comment-form" onSubmit={submitComment}>
