@@ -322,3 +322,14 @@ nav div {
 	display: flex;
 	position: relative;
 }
+
+.fa-plus-square {
+	font-size: 22px;
+	margin-top: 3.5px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+
+#searchIcons__input:focus {
+	outline: none;
+}
