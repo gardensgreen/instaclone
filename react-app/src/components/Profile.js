@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecomendedPost from "./post/recomenedPost";
+import NumFollowers from "./NumFollowers";
+import NumFollowing from "./NumFollowing";
 
 function Profile(props) {
     const [user, setUsers] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [loggedin, setLoggedin] = useState([]);
+    const [followingToFollow, setFollowingToFollow] = useState(false);
+    const [followToFollowing, setFollowToFollowing] = useState(false);
+    const [notFollowing, setNotFollowing] = useState(true);
     const { username } = useParams();
+    const userName = localStorage.getItem("IG_USERNAME");
+    const following = loggedin.followingUserNames;
 
     useEffect(() => {
         setLoaded(false);
         async function fetchData() {
             const response = await fetch(`/api/users/${username}`);
+            const loggedInUser = await fetch(`/api/users/${userName}`);
             const responseData = await response.json();
+            const resData = await loggedInUser.json();
             setUsers(responseData);
+            setLoggedin(resData);
             setLoaded(true);
         }
-        fetchData();
-    }, []);
+    });
 
     // let clickedFollowersButton = false;
     // const clickedFollowers = (e) => {
@@ -35,6 +45,111 @@ function Profile(props) {
     //     return;
     //   }
     // }
+
+    const overFollowing = () => {
+        const followButton = window.document.querySelector(".follow-button");
+
+        if (followButton === null) {
+            if (
+                (followingToFollow === false && followToFollowing === false) ||
+                notFollowing === false
+            ) {
+                const followingButton = window.document.querySelector(
+                    ".following-button"
+                );
+                followingButton.innerHTML = "Unfollow";
+            }
+        }
+    };
+
+    const leftFollowing = () => {
+        const followButton = window.document.querySelector(".follow-button");
+        if (followButton === null) {
+            if (
+                (followingToFollow === false && followToFollowing === false) ||
+                notFollowing === false
+            ) {
+                const followingButton = window.document.querySelector(
+                    ".following-button"
+                );
+                followingButton.innerHTML = "Following";
+            }
+        }
+    };
+    const follow = async () => {
+        const followButton = window.document.querySelector(".follow-button");
+        const followingButton = window.document.querySelector(
+            ".following-button"
+        );
+
+        if (followButton === null) {
+            if (
+                followingButton.innerHTML === "Following" ||
+                followingButton.innerHTML === "Unfollow"
+            ) {
+                unFollow();
+                setFollowingToFollow(false);
+                return;
+            }
+        }
+        if (followButton.innerHTML === "Follow") {
+            followButton.classList.remove("follow-button");
+            followButton.classList.add("following-button");
+            followButton.innerHTML = "Following";
+            setFollowToFollowing(true);
+            setNotFollowing(false);
+            await fetch(`/api/users/${user.id}/follower`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    followerId: loggedin.id,
+                }),
+            });
+            const response = await fetch(`/api/users/${username}`);
+            const result = await response.json();
+            setUsers(result);
+            return;
+        }
+    };
+    const unFollow = async () => {
+        const followingButton = window.document.querySelector(
+            ".following-button"
+        );
+        const followButton = window.document.querySelector(".follow-button");
+
+        if (followingButton === null) {
+            if (followButton.innerHTML === "Follow") {
+                follow();
+                setFollowToFollowing(false);
+                setFollowingToFollow(false);
+                return;
+            }
+        }
+        if (
+            followingButton.innerHTML === "Unfollow" ||
+            followingButton.innerHTML === "Following"
+        ) {
+            followingButton.classList.remove("following-button");
+            followingButton.classList.add("follow-button");
+            followingButton.innerHTML = "Follow";
+            setFollowingToFollow(true);
+            await fetch(`/api/users/${user.id}/follower`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    followerId: loggedin.id,
+                }),
+            });
+            const response = await fetch(`/api/users/${username}`);
+            const result = await response.json();
+            setUsers(result);
+            return;
+        }
+    };
 
     return (
         loaded && (
@@ -74,10 +189,56 @@ function Profile(props) {
                             </div>
                         </div>
                         <section style={{ width: "613px", height: "194px" }}>
-                            <div style={{ marginBotton: "20px" }}>
+                            <div
+                                style={{
+                                    marginBotton: "20px",
+                                    display: "flex",
+                                    flexDirection: "row",
+                                }}
+                            >
                                 <h2 className="section__div__userName">
                                     {user.username}
                                 </h2>
+                                {username !== userName &&
+                                following.includes(`${username}`) === false ? (
+                                    <div
+                                        className="section__div__followButton"
+                                        style={{
+                                            width: "93px",
+                                            height: "30px",
+                                            marginLeft: "25px",
+                                        }}
+                                    >
+                                        <button
+                                            onMouseEnter={overFollowing}
+                                            onMouseLeave={leftFollowing}
+                                            onClick={follow}
+                                            className="follow-button"
+                                        >
+                                            Follow
+                                        </button>
+                                    </div>
+                                ) : username !== userName ? (
+                                    <div
+                                        className="section__div__followButton"
+                                        style={{
+                                            width: "93px",
+                                            height: "30px",
+                                            marginLeft: "25px",
+                                        }}
+                                    >
+                                        <button
+                                            onMouseEnter={overFollowing}
+                                            onMouseLeave={leftFollowing}
+                                            onClick={unFollow}
+                                            className="following-button"
+                                        >
+                                            Following
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                             <ul
                                 style={{
@@ -127,7 +288,9 @@ function Profile(props) {
                                             }}
                                             title="600"
                                         >
-                                            {user.numFollowers}{" "}
+                                            <NumFollowers
+                                                followers={user.numFollowers}
+                                            />{" "}
                                         </span>
                                         followers
                                     </span>
@@ -149,7 +312,9 @@ function Profile(props) {
                                                 fontWeight: "600",
                                             }}
                                         >
-                                            {user.numFollowing}{" "}
+                                            <NumFollowing
+                                                following={user.numFollowing}
+                                            />{" "}
                                         </span>
                                         following
                                     </span>
@@ -157,7 +322,6 @@ function Profile(props) {
                             </ul>
                             <div className="section__div__bio">
                                 <p>{user.bio}</p>
-                                <button>follow</button>{" "}
                             </div>
                         </section>
                     </header>
@@ -221,7 +385,7 @@ function Profile(props) {
                                 className="recomended-post-holder"
                             >
                                 {user.posts.map((p) => (
-                                    <RecomendedPost rec={p} />
+                                    <RecomendedPost key={p.id} rec={p} />
                                 ))}
                             </div>
                         </article>
