@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecomendedPost from "./post/recomenedPost";
+import { authenticate } from '../services/auth';
 
 function Profile(props) {
     const [user, setUsers] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [myUserId, setMyUserId] = useState(null);
+    const [canFollow, setCanFollow] = useState(false);
     const { username } = useParams();
 
     useEffect(() => {
@@ -13,10 +16,36 @@ function Profile(props) {
             const response = await fetch(`/api/users/${username}`);
             const responseData = await response.json();
             setUsers(responseData);
+            setCanFollow(responseData.canFollow);
             setLoaded(true);
+            setMyUserId((await authenticate()).id);
         }
         fetchData();
     }, []);
+
+    const follow = async (e) => {
+        e.preventDefault();
+        let res = await fetch(`/api/users/${user.id}/follower`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({followerId:myUserId}),
+        });
+        res = await res.json();
+        setCanFollow(!res.added)
+    }
+
+    const unfollow = async (e) => {
+        e.preventDefault();
+        e.preventDefault();
+        let res = await fetch(`/api/users/${user.id}/follower`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({followerId:myUserId}),
+        });
+        res = await res.json();
+        setCanFollow(res.removed)
+
+    }
 
     // let clickedFollowersButton = false;
     // const clickedFollowers = (e) => {
@@ -157,7 +186,7 @@ function Profile(props) {
                             </ul>
                             <div className="section__div__bio">
                                 <p>{user.bio}</p>
-                                <button>follow</button>{" "}
+                                {canFollow ? <button onClick={follow} className="profile-follow-unfollow">follow</button> : <button onClick={unfollow} className="profile-follow-unfollow">Unfollow</button>}{" "}
                             </div>
                         </section>
                     </header>

@@ -72,6 +72,12 @@ nav div {
 	justify-content: center;
 }
 
+.profile-follow-unfollow{
+	color: white;
+	background-color: blue;
+	font-size: large;
+}
+
 .div2__center__searchbar {
 	writing-mode: horizontal-tb;
 	font-size: 16px;
@@ -321,4 +327,15 @@ nav div {
 .posts__images__article {
 	display: flex;
 	position: relative;
+}
+
+.fa-plus-square {
+	font-size: 22px;
+	margin-top: 3.5px;
+	font-weight: lighter;
+	cursor: pointer;
+}
+
+#searchIcons__input:focus {
+	outline: none;
 }
