@@ -120,7 +120,7 @@
 	border: 1px solid lightgrey;
 	border-radius: 3px;
 	margin-right: 30px;
-	resize: vertical;
+	resize: none;
 }
 
 ::-webkit-input-placeholder {
