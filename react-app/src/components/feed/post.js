@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
+
 const Post = ({ post, user, users, myUserId }) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState(post.comments);

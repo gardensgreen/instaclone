@@ -72,6 +72,12 @@ nav div {
 	justify-content: center;
 }
 
+.profile-follow-unfollow{
+	color: white;
+	background-color: blue;
+	font-size: large;
+}
+
 .div2__center__searchbar {
 	writing-mode: horizontal-tb;
 	font-size: 16px;
