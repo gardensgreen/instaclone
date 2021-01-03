@@ -53,9 +53,10 @@ def users():
 @login_required
 def userParam(username):
     user = User.query.filter_by(username = username).first()
-    returnValue = user.to_profile_dict()
-    returnValue['canFollow'] = current_user and current_user not in user.followers
-    return returnValue
+
+    userProfile = user.to_profile_dict()
+    return userProfile
+
 
 
 @user_routes.route('/<int:id>', methods=['PATCH'])
@@ -114,6 +115,8 @@ def deleteFollower(id):
     followerId = request.json["followerId"]
     if current_user.id != followerId and current_user.id != id:
         return jsonify({"error": "Not authorized"})
+    # if current_user.get_id() != followerId and current_user.get_id() != id:
+    #     return jsonify({"error": "Not authorized"})
     follower = User.query.get(followerId)
     user = User.query.get(id)
     user.followers.remove(follower)

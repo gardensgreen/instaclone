@@ -53,6 +53,9 @@ class User(db.Model, UserMixin):
       "bio": self.bio
     }
 
+  def follower_names(self):
+    return self.username
+
   def to_profile_dict(self):
     return {
       "id": self.id,
@@ -62,6 +65,9 @@ class User(db.Model, UserMixin):
       "bio": self.bio,
       "numFollowers": len(self.followers),
       "numFollowing": len(self.following),
+      "followers": [follower.to_dict() for follower in self.followers],
+      "following": [user.to_dict() for user in self.following],
+      "followingUserNames": [user.follower_names() for user in self.following],
       "posts": [post.to_simple_dict() for post in self.posts]
     }
 

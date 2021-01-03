@@ -5,7 +5,7 @@ export const authenticate = async() => {
     }
   });
   const res = await response.json();
-  console.log(res);
+  localStorage.setItem("IG_USERNAME", `${res.username}`);
   return res;
 }
 

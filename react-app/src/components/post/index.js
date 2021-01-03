@@ -73,7 +73,6 @@ const Post = () => {
         setLikeUsers(res.likers);
     };
 
-
     return loaded && (
         <div className="post-wraper">
             <div className="post-holder">
