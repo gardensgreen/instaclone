@@ -43,45 +43,50 @@ def users():
     return {"users": [user.to_dict() for user in users]}
 
 
-# @user_routes.route('/<int:id>')
-# @login_required
-# def user(id):
-#     user = User.query.get(id)
-#     return user.to_dict()
+@user_routes.route('/<int:id>')
+@login_required
+def user(id):
+    user = User.query.get(id)
+    return user.to_profile_dict()
+
 
 @user_routes.route("/<username>")
 @login_required
 def userParam(username):
-    user = User.query.filter_by(username = username).first()
+    user = User.query.filter_by(username=username).first()
 
     userProfile = user.to_profile_dict()
     return userProfile
-
 
 
 @user_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def edit_profile(id):
     user = User.query.get(id)
+    print("user", user)
     user.username = request.form['username']
     user.email = request.form['email']
     user.bio = request.form['bio']
-    if "file" not in request.files:
-        return "No file key in request.files"
-    file = request.files['file']
-    description = request.form.get('description')
-    if file:
-        photo_url = upload_file_to_s3(file, current_user.get_id(), BUCKET_NAME)
-        try:
-            user.avatarUrl = photo_url
-            db.session.commit()
-            return jsonify(user.to_dict())
-        except AssertionError as message:
-            return jsonify({"error": str(message)}), 400
-    else:
-        print("Something went wrong")
+    print("form", request.form)
+    print("user after", user)
+#    if "file" not in request.files:
+#         return "No file key in request.files"
+    if "file" in request.files:
+        file = request.files['file']
+        if file:
+            photo_url = upload_file_to_s3(
+                file, current_user.get_id(), BUCKET_NAME)
+            try:
+                user.avatarUrl = photo_url
+                db.session.commit()
+                return jsonify(user.to_dict())
+            except AssertionError as message:
+                return jsonify({"error": str(message)}), 400
+        else:
+            print("Something went wrong")
 
     db.session.commit()
+    return "success"
 
 
 @user_routes.route("/<int:id>/posts")
