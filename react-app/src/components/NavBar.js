@@ -42,6 +42,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 		}
 	};
 
+
 	const homeButton = () => {
 		history.push('/');
 	};
@@ -63,6 +64,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 		clickedOnUser = false;
 		history.push(`/users/${userdata.username}/edit`);
 	};
+
 
 	return (
 		<nav className='nav'>
