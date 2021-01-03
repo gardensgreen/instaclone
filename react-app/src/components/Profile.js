@@ -26,7 +26,9 @@ function Profile(props) {
             setLoggedin(resData);
             setLoaded(true);
         }
-    });
+
+        fetchData();
+    }, [username]);
 
     // let clickedFollowersButton = false;
     // const clickedFollowers = (e) => {
