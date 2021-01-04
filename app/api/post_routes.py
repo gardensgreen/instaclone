@@ -20,8 +20,8 @@ BUCKET_NAME = 'insta-group-project'
 
 
 def spaceRemover(filename):
-  list_filename = filename.split(' ')
-  return '+'.join(list_filename)
+    list_filename = filename.split(' ')
+    return '+'.join(list_filename)
 
 # AWS s3 Helper
 
@@ -40,6 +40,8 @@ def upload_file_to_s3(file, userId, bucket_name, acl="public-read"):
     return "{}{}".format('https://insta-group-project.s3.amazonaws.com/', spaceRemover(file.filename))
 
 # Create Post
+
+
 @post_routes.route('/', methods=["POST"])
 @login_required
 def create_post():
@@ -79,7 +81,10 @@ def read_post(id):
         users[current_user.id] = current_user.to_simple_dict()
     recomended = getRecomendedPosts(post.id, post)
     canFollow = current_user and current_user not in post.user.followers
-    return jsonify({'post':post.to_dict(), 'users':users, "recomended":recomended, 'canFollow':canFollow})
+    canFollow = canFollow and current_user.id != post.userId
+
+    return jsonify({'post': post.to_dict(), 'users': users, "recomended": recomended, 'canFollow': canFollow})
+
 
 def getRecomendedPosts(id, p=None):
     post = p or Post.query.get(id)
@@ -105,10 +110,6 @@ def getRecomendedPosts(id, p=None):
     return list(recomended.values())
 
 
-
-
-
-
 # Read Posts (Post Feed)
 @post_routes.route('/', methods=['GET'])
 def read_posts():
@@ -125,7 +126,7 @@ def read_posts():
                 users[comment.userId] = comment.user.to_simple_dict()
     if user.id not in users:
         users[user.id] = user.to_simple_dict()
-    return jsonify({"Posts": [post.to_dict() for post in posts], "users":users})
+    return jsonify({"Posts": [post.to_dict() for post in posts], "users": users})
 
 
 # Update Post
@@ -134,7 +135,7 @@ def read_posts():
 def edit_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
-        return jsonify({ "error": 'Not Authorized'})
+        return jsonify({"error": 'Not Authorized'})
     description = request.json['description']
     post.description = description
     db.session.add(post)
@@ -142,12 +143,14 @@ def edit_post(id):
     return jsonify(post.to_dict())
 
 # Delete Post
+
+
 @post_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_post(id):
     post = Post.query.get(id)
     if current_user.get_id() != post.userId:
-        return jsonify({ "error": 'Not Authorized'})
+        return jsonify({"error": 'Not Authorized'})
     db.session.delete(post)
     db.session.commit()
     return jsonify(post.to_dict())
@@ -158,7 +161,7 @@ def delete_post(id):
 def likePost(id):
     post = Post.query.get(id)
     user = User.query.get(current_user.get_id())
-    likingUserIds = {u.id:True for u in post.likingUsers }
+    likingUserIds = {u.id: True for u in post.likingUsers}
     if user.id not in likingUserIds:
         post.likingUsers.append(user)
         db.session.commit()
@@ -172,7 +175,8 @@ def likePost(id):
 @post_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def comment(id):
-    comment = Comment(userId=current_user.get_id(), comment=request.json["comment"], postId=id)
+    comment = Comment(userId=current_user.get_id(),
+                      comment=request.json["comment"], postId=id)
     db.session.add(comment)
     post = Post.query.get(id)
     post.comments.append(comment)

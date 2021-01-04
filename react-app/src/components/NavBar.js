@@ -1,46 +1,56 @@
-import React from 'react';
-import { useHistory, NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { useHistory, NavLink } from "react-router-dom";
+import LogoutButton from "./auth/LogoutButton";
 
 const NavBar = ({ setAuthenticated, userdata }) => {
-	const history = useHistory();
-	let clickedOnUser = false;
-	let searchFocus = false;
-	const clickedSearch = () => {
-		const searchIcons = window.document.getElementById('searchIcons');
-		const searchIconsActive = window.document.getElementById('searchIcons--active');
-		const searchIconsText = window.document.querySelector('.searchIcons--searchText');
-		const searchIconsInput = window.document.getElementById('searchIcons__input');
-		const emptyDiv = window.document.getElementById('emptySearchDiv');
-		if (searchFocus === false) {
-			emptyDiv.style.display = '';
-			searchIcons.style.display = 'none';
-			searchIconsActive.style.display = 'flex';
-			searchIconsText.style.display = 'none';
-			searchIconsInput.focus();
-			searchFocus = true;
-		} else {
-			emptyDiv.style.display = 'none';
-			searchIcons.style.display = 'inline';
-			searchIconsActive.style.display = 'none';
-			searchIconsText.style.display = 'inline-block';
-			searchFocus = false;
-		}
-	};
+    const history = useHistory();
+    let clickedOnUser = false;
+    let searchFocus = false;
+    const clickedSearch = () => {
+        const searchIcons = window.document.getElementById("searchIcons");
+        const searchIconsActive = window.document.getElementById(
+            "searchIcons--active"
+        );
+        const searchIconsText = window.document.querySelector(
+            ".searchIcons--searchText"
+        );
+        const searchIconsInput = window.document.getElementById(
+            "searchIcons__input"
+        );
+        const emptyDiv = window.document.getElementById("emptySearchDiv");
+        if (searchFocus === false) {
+            emptyDiv.style.display = "";
+            searchIcons.style.display = "none";
+            searchIconsActive.style.display = "flex";
+            searchIconsText.style.display = "none";
+            searchIconsInput.focus();
+            searchFocus = true;
+        } else {
+            emptyDiv.style.display = "none";
+            searchIcons.style.display = "inline";
+            searchIconsActive.style.display = "none";
+            searchIconsText.style.display = "inline-block";
+            searchFocus = false;
+        }
+    };
 
-	const clickedUser = () => {
-		const userDropdown = window.document.querySelector('.center__span__userDropdown');
-		const clickableEle = window.document.querySelector('.clickable-element');
-		if (clickedOnUser === false) {
-			userDropdown.style.display = '';
-			clickableEle.style.display = '';
-			clickedOnUser = true;
-		} else {
-			userDropdown.style.display = 'none';
-			clickableEle.style.display = 'none';
-			clickedOnUser = false;
-		}
-	};
+    const clickedUser = () => {
+        const userDropdown = window.document.querySelector(
+            ".center__span__userDropdown"
+        );
+        const clickableEle = window.document.querySelector(
+            ".clickable-element"
+        );
+        if (clickedOnUser === false) {
+            userDropdown.style.display = "";
+            clickableEle.style.display = "";
+            clickedOnUser = true;
+        } else {
+            userDropdown.style.display = "none";
+            clickableEle.style.display = "none";
+            clickedOnUser = false;
+        }
+    };
 
 	const homeButton = () => {
 		history.push('/');
