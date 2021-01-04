@@ -103,7 +103,10 @@ export default function LandingPage({ authenticated }) {
                     <a href="https://linkedin.com" className="footer-link">
                         Elijah Hubbard
                     </a>
-                    <a href="https://linkedin.com" className="footer-link">
+                    <a
+                        href="https://linkedin.com/in/danieltillero"
+                        className="footer-link"
+                    >
                         Daniel Tillero
                     </a>
                 </div>
