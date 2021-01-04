@@ -67,7 +67,7 @@ def sign_up():
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
-            avatarUrl='/images/default-avatar.jpg'
+            avatarUrl='https://insta-group-project.s3.amazonaws.com/default-avatar.jpg'
         )
         db.session.add(user)
         db.session.commit()

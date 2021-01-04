@@ -101,7 +101,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
                 <div className="nav__div2">
                     <div className="nav__div2__left">
                         <img
-                            src={window.location.origin + "/images/logo.png"}
+                            src='https://insta-group-project.s3.amazonaws.com/logo.png'
                             alt="logo"
                             id="navLogo"
                             onClick={(e) => history.push("/")}
