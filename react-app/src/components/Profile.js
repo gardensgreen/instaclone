@@ -28,7 +28,7 @@ function Profile(props) {
         }
 
         fetchData();
-    }, [username]);
+    }, [username, userName]);
 
     // let clickedFollowersButton = false;
     // const clickedFollowers = (e) => {
@@ -185,7 +185,7 @@ function Profile(props) {
                                             height: "150px",
                                         }}
                                         src={user.avatarUrl}
-                                        alt="profile-picture"
+                                        alt="profile"
                                     />
                                 </span>
                             </div>

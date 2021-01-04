@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 const NumFollowers = (props) => {
-
-    useEffect(() => {
-    }, [props.followers])
+    useEffect(() => {}, [props.followers]);
 
     return props.followers;
-}
+};
 
 export default NumFollowers;
