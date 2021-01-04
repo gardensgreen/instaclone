@@ -101,7 +101,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
                 <div className="nav__div2">
                     <div className="nav__div2__left">
                         <img
-                            src="/images/logo.png"
+                            src={window.location.origin + "/images/logo.png"}
                             alt="logo"
                             id="navLogo"
                             onClick={(e) => history.push("/")}
