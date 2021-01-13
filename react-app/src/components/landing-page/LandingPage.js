@@ -89,7 +89,7 @@ export default function LandingPage({ authenticated }) {
                         Chris Resnick
                     </a>
                     <a
-                        href="https://www.linkedin.com/in/ezra-pinsky-1b321189/"
+                        href="https://www.linkedin.com/in/ezra-pinsky/"
                         className="footer-link"
                     >
                         Ezra Pinsky
