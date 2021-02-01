@@ -116,6 +116,7 @@ def read_posts():
     #user = User.query.get(current_user.get_id())
     user = current_user
     following_ids = [following.id for following in user.following]
+    following_ids.append(user.id)
     posts = Post.query.filter(Post.userId.in_(following_ids)).all()
     users = {}
     for post in posts:
