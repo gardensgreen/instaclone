@@ -53,3 +53,26 @@ Instaclone's backend was built using Flask for Python. The server has a RESTful 
 
 <img src="https://insta-group-project.s3.amazonaws.com/database-schema.png"/>
 
+## Usage
+
+### Development
+
+Want to contribute?
+
+To fix a bug or add a feature, follow these steps:
+
+- Fork the repository
+- Create a new branch with `git checkout -b feature-branch-name`
+- Make appropriate changes to the files and push back to github
+- Create a Pull Request
+   - Use a clear and descriptive title for the issue to identify the suggestion.
+   - Include any relevant issue numbers in the PR body, not the title.
+   - Provide a comprehensive description of all changes made.
+
+--------------------------------------------------------
+## Team
+
+| [Chris Resnick](https://github.com/) | [Elijah Hubbard](https://github.com/) | [Daniel Tillero](https://github.com/gardensgreen) | [Ezra Pinsky](https://github.com/) |
+|-|-|-|
+
+
