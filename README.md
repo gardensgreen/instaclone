@@ -31,7 +31,7 @@ Here is a working live demo: [Demo](https://instaclone-group.herokuapp.com/)
 
 ## Application Architecture
 
-Instaclone's backend was built using Flask for Python. The server has a RESTful API layer for all CRUD actions. It is connected to a PostgreSQL database which leverages the SQLAlchemy ORM for information retrieval and data manipulation. The frontend was built using React and Hooks, and uses built-in context/prop=threading for client storage and global state management. All ougoing client requests are proxied to Flask server.
+Instaclone's backend was built using Flask for Python. The server has a RESTful API layer for all CRUD actions. It is connected to a PostgreSQL database which leverages the SQLAlchemy ORM for information retrieval and data manipulation. The frontend was built using React and Hooks, and uses built-in context and prop-threading for client storage and global state management. All ougoing client requests are proxied to Flask server.
 
 ## Features
 
@@ -73,6 +73,6 @@ To fix a bug or add a feature, follow these steps:
 ## Team
 
 | [Chris Resnick](https://github.com/) | [Elijah Hubbard](https://github.com/) | [Daniel Tillero](https://github.com/gardensgreen) | [Ezra Pinsky](https://github.com/) |
-|-|-|-|
+|-|-|-|-|
 
 
