@@ -97,7 +97,7 @@ const Post = () => {
                             {numLikes} {numLikes !== 1 ? "likes" : "like"}{" "}
                         </div>
                         <form onSubmit={submitComent}>
-                            <textarea value={newComent} onChange={e => setNewComment(e.target.value)} placeholder="New Comment"/>
+                            <textarea className="comment-textarea" value={newComent} onChange={e => setNewComment(e.target.value)} placeholder="New Comment"/>
                             <input value="Post Comment" type="submit"/>
                         </form>
                     </div>

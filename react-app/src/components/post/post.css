@@ -171,3 +171,7 @@ body {
     color: black;
     text-decoration: none;
 }
+
+.comment-textarea {
+    resize: none;
+}
