@@ -376,3 +376,46 @@ nav div {
 	margin-left: 100px;
 	cursor: pointer;
 }
+
+/* NavResults */
+.searchResults__div {
+	margin-left: -80px;
+	top: 12px;
+}
+.searchResults__div-topBox {
+	transform: translateY(0);
+	background: #fff;
+	border-radius: 6px;
+	box-shadow: 0 0 5px 1px rgba(var(--jb7,0,0,0),.0975);
+	position: absolute;
+	z-index: 5;
+	height: 18em;
+}
+.box__diamond {
+	left: 184px;
+	bottom: 0;
+	top: -6px;
+	background: rgba(var(--d87, 255, 255, 255), 1);
+	border: 1px solid rgba(var(--f23, 255, 255, 255), 1);
+	box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+	height: 14px;
+	position: absolute;
+	transform: rotate(45deg);
+	width: 14px;
+}
+.searchResults__div-box {
+	background: #fff;
+	border-radius: 6px;
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+}
+.searchResults__topIndivResults {
+	max-height: 362px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 0;
+	width: 375px
+}

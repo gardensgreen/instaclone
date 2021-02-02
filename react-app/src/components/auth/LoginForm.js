@@ -28,6 +28,8 @@ const LoginForm = ({ authenticated, setAuthenticated, setUserdata }) => {
             setAuthenticated(true);
             setUserdata(user);
         } else {
+            console.log(user.errors);
+            debugger;
             setErrors(user.errors);
         }
     };

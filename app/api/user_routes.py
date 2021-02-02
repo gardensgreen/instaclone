@@ -55,10 +55,10 @@ def user(id):
 @user_routes.route("/<username>")
 @login_required
 def userParam(username):
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first_or_404()
 
     userProfile = user.to_profile_dict()
-    return userProfile
+    return jsonify(userProfile)
 
 
 @user_routes.route('/<int:id>', methods=['PATCH'])
@@ -136,6 +136,7 @@ def deleteFollower(id):
 def search_users(search_text):
 
   # results = db.session.query(User).filter(func.lower(User.username).op('~')(rf"[{search_text.lower()}]+")).all()
+  print("Search Results", search_text)
   query = db.session.query(User).filter(User.username.ilike(f'%{search_text}%')).all()
   results = [user.to_simple_dict() for user in query]
   return jsonify({'searchResults': results})
