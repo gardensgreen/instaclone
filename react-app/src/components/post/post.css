@@ -11,7 +11,7 @@ body {
     display: flex;
     width: 80vw;
     height: 80vh;
-    border: 1px solid rgba(10, 10, 10, .1);
+    border: 1px solid rgba(10, 10, 10, 0.1);
     background-color: white;
 }
 
@@ -40,8 +40,7 @@ body {
     height: 100%;
 }
 
-
-.post-holder img{
+.post-holder img {
     max-width: 100%;
     max-height: 100%;
 }
@@ -49,17 +48,17 @@ body {
 .post-info-holder {
     height: 100%;
     width: 25%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    border-left: 1px solid rgba(10, 10, 10, .1);
+    border-left: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .poster-info {
-    display:flex;
+    display: flex;
     align-items: center;
     height: 40px;
     width: 100%;
-    border-bottom: 1px solid rgba(10, 10, 10, .1);
+    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .post-info-holder img {
@@ -85,19 +84,22 @@ body {
 
 .post-comment-submit {
     margin-top: auto;
-    border-top: 1px solid rgba(10, 10, 10, .1);
+    border-top: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .post-comment-submit textarea {
+    margin-top: 10px;
     width: 100%;
     border: none;
 }
 
 .post-comment-submit input {
     background-color: transparent;
-    color: blue;
+    color: #0095f6;
     border: none;
     cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .post-comment-submit .far {
@@ -120,7 +122,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 80vw;
-    border: 1px solid rgba(10, 10, 10, .1)
+    border: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .one-recomended-post {
@@ -128,7 +130,7 @@ body {
     width: 20vw;
     height: 30vh;
     margin: 20px;
-    outline: 1px solid rgba(10, 10, 10, .1);
+    outline: 1px solid rgba(10, 10, 10, 0.1);
     cursor: pointer;
 }
 
@@ -147,7 +149,7 @@ body {
     position: absolute;
     display: none;
     justify-content: space-around;
-    align-items:center;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
@@ -164,14 +166,26 @@ body {
 .one-post-overlay {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-.post-user-name a, .post-comment-text a {
+.post-user-name a,
+.post-comment-text a {
     color: black;
     text-decoration: none;
 }
 
 .comment-textarea {
     resize: none;
+}
+
+.comment-submit {
+    background-color: transparent;
+    border: 0px;
+    color: #0095f6;
+    text-decoration: none;
+}
+
+.comment-submit:hover {
+    cursor: pointer;
 }
