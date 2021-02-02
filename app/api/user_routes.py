@@ -137,5 +137,5 @@ def search_users(search_text):
 
   # results = db.session.query(User).filter(func.lower(User.username).op('~')(rf"[{search_text.lower()}]+")).all()
   query = db.session.query(User).filter(User.username.ilike(f'%{search_text}%')).all()
-  results = [user.to_dict() for user in query]
+  results = [user.to_simple_dict() for user in query]
   return jsonify({'searchResults': results})
