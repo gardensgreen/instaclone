@@ -6,6 +6,7 @@ import Search from './search';
 const NavBar = ({ setAuthenticated, userdata }) => {
 	const history = useHistory();
 	const [searchTerm, setSearchTerm] = useState('');
+	const [searchFoc, setSearchFocus] = useState(false);
 	const searchBar = useRef(null);
 
 	let clickedOnUser = false;
@@ -123,6 +124,8 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 									}}
 									ref={searchBar}
 									value={searchTerm}
+									onFocus={() => setSearchFocus(true)}
+									onBlur={() => setSearchFocus(false)}
 									onChange={e => {
 										setSearchTerm(e.target.value);
 										console.log(e.target.value);
@@ -187,7 +190,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 								</span>
 							</div>
 						</div>
-						<Search searchTerm={searchTerm} searchBar={searchBar} />
+						<Search searchTerm={searchTerm} searchFoc={searchFoc} searchBar={searchBar} />
 					</div>
 					<div className='nav__div2__right'>
 						<div className='div2__right__icons'>
