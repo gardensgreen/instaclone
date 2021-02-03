@@ -4,7 +4,9 @@ from app.models import User, Post
 from ..models.db import db
 import boto3
 import os
+import re
 from werkzeug.utils import secure_filename
+from sqlalchemy import func
 
 user_routes = Blueprint('users', __name__)
 
@@ -127,3 +129,13 @@ def deleteFollower(id):
     user.followers.remove(follower)
     db.session.commit()
     return jsonify({"removed": True})
+
+
+@user_routes.route('/search/<search_text>', methods=['GET'])
+# @login_required
+def search_users(search_text):
+
+  # results = db.session.query(User).filter(func.lower(User.username).op('~')(rf"[{search_text.lower()}]+")).all()
+  query = db.session.query(User).filter(User.username.ilike(f'%{search_text}%')).all()
+  results = [user.to_simple_dict() for user in query]
+  return jsonify({'searchResults': results})
