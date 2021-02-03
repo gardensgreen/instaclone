@@ -115,6 +115,7 @@ body {
 
 .recomended-post-holder {
     margin-top: 10vh;
+    margin-bottom: 5vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
