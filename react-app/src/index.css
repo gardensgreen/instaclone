@@ -376,3 +376,29 @@ nav div {
 	margin-left: 100px;
 	cursor: pointer;
 }
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	/* background-color: rgb(250, 229, 204); */
+	background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.747);
+	border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(104, 139, 155);
+}
+
+::-webkit-scrollbar-corner {
+	background-color: rgb(250, 229, 204);
+}
