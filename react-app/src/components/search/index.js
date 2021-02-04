@@ -13,9 +13,9 @@ export default function Search({ searchTerm, searchBar, searchFoc }) {
 		})();
 	}, [searchTerm]);
 
-	return (results.length && searchFoc) ? (
+	return (searchFoc && searchTerm.length) ? (
 		<div id='searchResults'>
-			{results.map(({ avatarUrl, username }) => {
+			{results.length ? results.map(({ avatarUrl, username }) => {
 				return (
 					<NavLink to={`/users/${username}`} key={username}>
 						<div
@@ -27,7 +27,10 @@ export default function Search({ searchTerm, searchBar, searchFoc }) {
 						</div>
 					</NavLink>
 				);
-			})}
+			}) : <div 
+				className="noResults"
+				style={{ width: searchBar.current && searchBar.current.style.width }}
+				>No Results</div>}
 		</div>
 	) : null;
 }
