@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './index.css';
-export default function Search({ searchTerm, searchBar }) {
+export default function Search({ searchTerm, searchBar, searchFoc }) {
 	const [results, setResults] = useState([]);
 
 	useEffect(() => {
@@ -13,7 +13,7 @@ export default function Search({ searchTerm, searchBar }) {
 		})();
 	}, [searchTerm]);
 
-	return results.length ? (
+	return (results.length && searchFoc) ? (
 		<div id='searchResults'>
 			{results.map(({ avatarUrl, username }) => {
 				return (

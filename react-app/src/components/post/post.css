@@ -116,13 +116,14 @@ body {
 }
 
 .recomended-post-holder {
-	margin-top: 10vh;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	width: 80vw;
-	border: 1px solid rgba(10, 10, 10, 0.1);
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    border: 1px solid rgba(10, 10, 10, .1)
 }
 
 .one-recomended-post {
