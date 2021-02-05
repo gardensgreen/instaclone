@@ -125,7 +125,7 @@ const NavBar = ({ setAuthenticated, userdata }) => {
 									ref={searchBar}
 									value={searchTerm}
 									onFocus={() => setSearchFocus(true)}
-									onBlur={() => setSearchFocus(false)}
+									onBlur={() => setTimeout(()=>setSearchFocus(false), 100)}
 									onChange={e => {
 										setSearchTerm(e.target.value);
 										console.log(e.target.value);
