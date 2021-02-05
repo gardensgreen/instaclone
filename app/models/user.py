@@ -10,7 +10,7 @@ follow = db.Table(
     db.Model.metadata,
     db.Column("followerId", db.Integer, db.ForeignKey("users.id")),
     db.Column("followingId", db.Integer, db.ForeignKey("users.id")),
-    db.Column("timestamp", db.DateTime, default=datetime.now())
+    db.Column("timestamp", db.DateTime, default=datetime.now)
 )
 
 

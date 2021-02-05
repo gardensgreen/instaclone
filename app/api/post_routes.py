@@ -117,7 +117,7 @@ def read_posts():
     user = current_user
     following_ids = [following.id for following in user.following]
     following_ids.append(user.id)
-    posts = Post.query.filter(Post.userId.in_(following_ids)).all()
+    posts = Post.query.filter(Post.userId.in_(following_ids)).order_by(Post.timestamp.desc()).all()
     users = {}
     for post in posts:
         if post.userId not in users:

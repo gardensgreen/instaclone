@@ -10,7 +10,7 @@ class Post(db.Model):
     description = db.Column(db.String(100), nullable=True)
     photoUrl = db.Column(db.String(200), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
-    timestamp = db.Column(db.DateTime, default=datetime.now())
+    timestamp = db.Column(db.DateTime, default=datetime.now)
 
     user = relationship("User")
 
