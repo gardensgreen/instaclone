@@ -1,43 +1,43 @@
 body {
-    background-color: rgba(10, 10, 10, 0.01);
+	background-color: rgba(10, 10, 10, 0.01);
 }
 
 .posts-holder {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .post-user-info {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
-    padding: 15px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
+	padding: 15px;
 }
 
 .post-profile-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
-    overflow: hidden;
-    padding: 3px;
-    margin-right: 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	overflow: hidden;
+	padding: 3px;
+	margin-right: 5px;
 }
 
 .post-comment-holder a {
-    color: grey;
-    font-weight: lighter;
-    font-size: medium;
+	color: grey;
+	font-weight: lighter;
+	font-size: medium;
 }
 
 .post-text {
-    margin-top: 5px;
-    margin-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .post-bottom-info-holder {
-    padding: 15px;
+	padding: 15px;
 }
 
 /* .post-comment-holder {
@@ -46,75 +46,77 @@ body {
 } */
 
 .post-comment-field {
-    margin-top: 10px;
-
-    border: none;
-    width: 80%;
+	margin-top: 10px;
+	resize: none;
+	border: none;
+	width: 80%;
 }
 
 .one-post-holder {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    outline: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	outline: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
 }
 
 .feed-post-img-holder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid rgba(0.3, 0.3, 0.3, 0.25);
 }
 
 .post-likes i {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .comment-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .fas {
-    color: red;
-    margin-bottom: 10px;
-    margin-right: 10px;
+	color: red;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .far {
-    margin-bottom: 10px;
-    margin-right: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .feed-post-img-holder img {
-    max-width: 100%;
-    max-height: 80vh;
-    cursor: pointer;
+	max-width: 100%;
+	max-height: 80vh;
+	cursor: pointer;
 }
 
 .comment-submit {
-    background-color: transparent;
-    border: 0px;
-    color: #0095f6;
+	background-color: transparent;
+	border: 0px;
+	color: #0095f6;
 }
 
 .comment-submit:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .see-more-comments {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .feed-post-comment {
-    margin-bottom: 4px;
+	margin-bottom: 4px;
 }
 
-.post-author-name a, .feed-post-comment a, .post-text a {
-    color: black;
-    text-decoration: none;
+.post-author-name a,
+.feed-post-comment a,
+.post-text a {
+	color: black;
+	text-decoration: none;
 }
