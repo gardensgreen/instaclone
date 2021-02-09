@@ -8,11 +8,11 @@ body {
 	align-items: center;
 }
 .post-holder {
-    display: flex;
-    width: 80vw;
-    height: 80vh;
-    border: 1px solid rgba(10, 10, 10, 0.1);
-    background-color: white;
+	display: flex;
+	width: 80vw;
+	height: 80vh;
+	border: 1px solid rgba(10, 10, 10, 0.1);
+	background-color: white;
 }
 
 .post-follow-link {
@@ -41,24 +41,24 @@ body {
 }
 
 .post-holder img {
-    max-width: 100%;
-    max-height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .post-info-holder {
-    height: 100%;
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid rgba(10, 10, 10, 0.1);
+	height: 100%;
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	border-left: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .poster-info {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: 100%;
-    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+	display: flex;
+	align-items: center;
+	height: 40px;
+	width: 100%;
+	border-bottom: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .post-info-holder img {
@@ -83,23 +83,24 @@ body {
 }
 
 .post-comment-submit {
-    margin-top: auto;
-    border-top: 1px solid rgba(10, 10, 10, 0.1);
+	margin-top: auto;
+	border-top: 1px solid rgba(10, 10, 10, 0.1);
+	padding: 5px;
 }
 
 .post-comment-submit textarea {
-    margin-top: 10px;
-    width: 100%;
-    border: none;
+	margin-top: 10px;
+	width: 100%;
+	border: none;
 }
 
 .post-comment-submit input {
-    background-color: transparent;
-    color: #0095f6;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    margin-bottom: 10px;
+	background-color: transparent;
+	color: #0095f6;
+	border: none;
+	cursor: pointer;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 .post-comment-submit .far {
@@ -116,14 +117,14 @@ body {
 }
 
 .recomended-post-holder {
-    margin-top: 10vh;
-    margin-bottom: 5vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 80vw;
-    border: 1px solid rgba(10, 10, 10, .1)
+	margin-top: 10vh;
+	margin-bottom: 5vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 80vw;
+	border: 1px solid rgba(10, 10, 10, 0.1);
 }
 
 .one-recomended-post {
@@ -133,7 +134,6 @@ body {
 	margin: 20px;
 	outline: 1px solid rgba(10, 10, 10, 0.1);
 	cursor: pointer;
-
 }
 
 .rec-img-holder {
@@ -175,7 +175,6 @@ body {
 .post-comment-text a {
 	color: black;
 	text-decoration: none;
-
 }
 
 .comment-textarea {
@@ -184,12 +183,20 @@ body {
 }
 
 .comment-submit {
-    background-color: transparent;
-    border: 0px;
-    color: #0095f6;
-    text-decoration: none;
+	background-color: transparent;
+	border: 0px;
+	color: #0095f6;
+	text-decoration: none;
 }
 
 .comment-submit:hover {
-    cursor: pointer;
+	cursor: pointer;
+}
+
+.comment-submit:focus {
+	outline: none;
+}
+
+.comment-submit:active {
+	color: #006db6;
 }

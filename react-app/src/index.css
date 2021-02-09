@@ -402,3 +402,7 @@ nav div {
 ::-webkit-scrollbar-corner {
 	background-color: rgb(250, 229, 204);
 }
+
+.profileFollowerInfo:focus {
+	outline: none;
+}
