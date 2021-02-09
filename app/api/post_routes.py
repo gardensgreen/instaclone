@@ -100,13 +100,13 @@ def getRecomendedPosts(id, p=None):
         recomended[randPost.id] = randPost.to_simple_dict()
     if len(recomended) < 6:
         allPosts = Post.query.all()
-    while len(recomended) < min(6, len(allPosts)-1):
-        rand = randrange(0, len(allPosts))
-        randPost = allPosts[rand]
-        if randPost.id == post.id:
-            continue
-        if randPost.id not in recomended:
-            recomended[randPost.id] = randPost.to_simple_dict()
+        while len(recomended) < min(6, len(allPosts)-1):
+            rand = randrange(0, len(allPosts))
+            randPost = allPosts[rand]
+            if randPost.id == post.id:
+                continue
+            if randPost.id not in recomended:
+                recomended[randPost.id] = randPost.to_simple_dict()
     return list(recomended.values())
 
 
